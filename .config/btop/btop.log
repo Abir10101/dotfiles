@@ -60,3 +60,11 @@ btop++ needs an interactive shell to run.
 2025/05/13 (13:04:58) | ===> btop++ v.1.4.0
 2025/05/13 (13:04:58) | WARNING: Intel GPU: Failed to initialize PMU
 2025/05/13 (13:05:05) | WARNING: Failed to join _runner thread on exit!
+
+2025/05/13 (15:45:52) | ===> btop++ v.1.4.0
+2025/05/13 (15:45:52) | WARNING: Intel GPU: Failed to initialize PMU
+2025/05/13 (15:48:12) | WARNING: Failed to join _runner thread on exit!
+
+2025/05/13 (15:48:19) | ===> btop++ v.1.4.0
+2025/05/13 (15:48:19) | WARNING: Intel GPU: Failed to initialize PMU
+2025/05/13 (15:53:09) | WARNING: Failed to join _runner thread on exit!
