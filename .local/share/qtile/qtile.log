@@ -1,1 +1,28 @@
 2025-05-13 15:53:18,246 WARNING libqtile lifecycle.py:_atexit():L38 Qtile will now terminate
+2025-05-13 17:49:30,743 WARNING libqtile lifecycle.py:_atexit():L38 Qtile will now terminate
+2025-05-13 21:22:15,718 ERROR libqtile manager.py:spawn():L1301 couldn't find `kitty`
+2025-05-13 21:22:17,713 ERROR libqtile manager.py:spawn():L1301 couldn't find `kitty`
+2025-05-13 21:22:18,297 ERROR libqtile manager.py:spawn():L1301 couldn't find `kitty`
+2025-05-13 21:22:18,437 ERROR libqtile manager.py:spawn():L1301 couldn't find `kitty`
+2025-05-13 21:22:18,585 ERROR libqtile manager.py:spawn():L1301 couldn't find `kitty`
+2025-05-13 21:22:19,467 ERROR libqtile manager.py:spawn():L1301 couldn't find `kitty`
+2025-05-13 21:22:19,767 ERROR libqtile manager.py:spawn():L1301 couldn't find `kitty`
+2025-05-13 21:22:19,931 ERROR libqtile manager.py:spawn():L1301 couldn't find `kitty`
+2025-05-13 21:22:20,063 ERROR libqtile manager.py:spawn():L1301 couldn't find `kitty`
+2025-05-13 21:22:20,214 ERROR libqtile manager.py:spawn():L1301 couldn't find `kitty`
+2025-05-13 21:22:20,378 ERROR libqtile manager.py:spawn():L1301 couldn't find `kitty`
+2025-05-13 21:22:20,526 ERROR libqtile manager.py:spawn():L1301 couldn't find `kitty`
+2025-05-13 21:22:20,658 ERROR libqtile manager.py:spawn():L1301 couldn't find `kitty`
+2025-05-13 21:22:20,780 ERROR libqtile manager.py:spawn():L1301 couldn't find `kitty`
+2025-05-13 21:22:21,424 ERROR libqtile manager.py:spawn():L1301 couldn't find `kitty`
+2025-05-13 21:22:21,576 ERROR libqtile manager.py:spawn():L1301 couldn't find `kitty`
+2025-05-13 21:22:21,730 ERROR libqtile manager.py:spawn():L1301 couldn't find `kitty`
+2025-05-13 21:22:21,870 ERROR libqtile manager.py:spawn():L1301 couldn't find `kitty`
+2025-05-13 21:22:22,550 ERROR libqtile manager.py:spawn():L1301 couldn't find `kitty`
+2025-05-13 21:22:22,702 ERROR libqtile manager.py:spawn():L1301 couldn't find `kitty`
+2025-05-13 21:22:22,846 ERROR libqtile manager.py:spawn():L1301 couldn't find `kitty`
+2025-05-13 21:22:22,980 ERROR libqtile manager.py:spawn():L1301 couldn't find `kitty`
+2025-05-13 21:22:34,886 ERROR libqtile manager.py:spawn():L1301 couldn't find `kitty`
+2025-05-13 21:22:35,674 ERROR libqtile manager.py:spawn():L1301 couldn't find `kitty`
+2025-05-13 21:22:46,784 WARNING libqtile lifecycle.py:_atexit():L38 Qtile will now terminate
+2025-05-13 21:39:38,411 WARNING libqtile lifecycle.py:_atexit():L38 Qtile will now terminate
