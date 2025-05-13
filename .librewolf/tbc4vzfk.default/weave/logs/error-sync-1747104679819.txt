@@ -1,0 +1,78 @@
+1747104679289	Sync.Status	INFO	Resetting Status.
+1747104679289	Sync.Status	DEBUG	Status.service: undefined => success.status_ok
+1747104679291	FirefoxAccounts	TRACE	initializing new storage manager
+1747104679291	FirefoxAccounts	TRACE	starting fetch of json user data
+1747104679291	Sync.SyncScheduler	TRACE	Setting SyncScheduler policy values to defaults.
+1747104679291	Sync.SyncScheduler	DEBUG	Clearing sync triggers and the global score.
+1747104679292	Sync.Service	INFO	Loading Weave 1.140.0
+1747104679292	Sync.Engine.Clients	DEBUG	Engine constructed
+1747104679293	Sync.Engine.Clients	DEBUG	Resetting clients last sync time
+1747104679296	Sync.Engine.Addons	DEBUG	Engine constructed
+1747104679301	FirefoxAccounts	TRACE	finished fetch of json user data - took: 10
+1747104679302	FirefoxAccounts	DEBUG	reading secure storage with existing: []
+1747104679302	FirefoxAccounts	TRACE	starting fetch of user data from the login manager
+1747104679303	FirefoxAccounts	DEBUG	secure read fetched items: []
+1747104679303	FirefoxAccounts	TRACE	initializing of new storage manager done
+1747104679305	Sync.Engine.Addons	DEBUG	SyncEngine initialized: addons
+1747104679308	Sync.Engine.Passwords	DEBUG	Engine constructed
+1747104679312	Sync.Engine.Passwords	DEBUG	SyncEngine initialized: passwords
+1747104679314	Sync.Engine.Prefs	DEBUG	Engine constructed
+1747104679345	Sync.Engine.Prefs	DEBUG	SyncEngine initialized: prefs
+1747104679347	Sync.Engine.Bookmarks	DEBUG	Engine constructed
+1747104679352	Sync.Engine.Bookmarks	DEBUG	SyncEngine initialized: bookmarks
+1747104679353	Sync.Engine.Forms	DEBUG	Engine constructed
+1747104679356	Sync.Engine.Forms	DEBUG	SyncEngine initialized: forms
+1747104679357	Sync.Engine.History	DEBUG	Engine constructed
+1747104679360	Sync.Engine.History	DEBUG	SyncEngine initialized: history
+1747104679362	Sync.Engine.Tabs	DEBUG	Engine constructed
+1747104679363	Sync.Engine.Tabs	DEBUG	SyncEngine initialized: tabs
+1747104679368	Sync.Engine.Tabs	INFO	Got a bridged engine!
+1747104679369	Sync.Engine.Addresses	DEBUG	Engine constructed
+1747104679369	Sync.Engine.Addresses	DEBUG	SyncEngine initialized: addresses
+1747104679370	Sync.Engine.CreditCards	DEBUG	Engine constructed
+1747104679370	Sync.Engine.CreditCards	DEBUG	SyncEngine initialized: creditcards
+1747104679371	Sync.Engine.Extension-Storage	DEBUG	Engine constructed
+1747104679371	Sync.Engine.Extension-Storage	DEBUG	SyncEngine initialized: extension-storage
+1747104679382	FirefoxAccounts	DEBUG	FxAccountsWebChannel registered: account_updates with origin https://accounts.firefox.com
+1747104679385	FirefoxAccounts	DEBUG	FxAccountsProfileClient: Initialized
+1747104679385	FirefoxAccounts	DEBUG	FxAccountsProfileClient: Requested profile
+1747104679385	FirefoxAccounts	DEBUG	getOAuthToken enter
+1747104679385	FirefoxAccounts	ERROR	FxA rejecting with error UNVERIFIED_ACCOUNT, details: undefined
+1747104679386	FirefoxAccounts	ERROR	Background refresh of initial profile failed: Error: UNVERIFIED_ACCOUNT(resource://gre/modules/FxAccounts.sys.mjs:1655:18) JS Stack trace: _error@FxAccounts.sys.mjs:1655:18
+withSessionToken@FxAccounts.sys.mjs:874:18
+1747104679783	Sync.Engine.Extension-Storage	INFO	Got a bridged engine!
+1747104679784	Sync.Service	INFO	Mozilla/5.0 (X11; Linux x86_64; rv:138.0) Gecko/20100101 Firefox/138.0
+1747104679788	Sync.AddonsReconciler	INFO	Registering as Add-on Manager listener.
+1747104679788	Sync.AddonsReconciler	DEBUG	Adding change listener.
+1747104679789	Sync.Engine.History.Tracker	INFO	Adding Places observer.
+1747104679809	FirefoxAccounts	TRACE	Command queue observer created
+1747104679809	FirefoxAccounts	TRACE	Getting command keys: https://identity.mozilla.com/cmd/open-uri
+1747104679810	FirefoxAccounts	INFO	Generating and persisting encrypted key (false, false)
+1747104679811	FirefoxAccounts	DEBUG	FxAccountsProfileClient: Requested profile
+1747104679811	FirefoxAccounts	DEBUG	getOAuthToken enter
+1747104679811	FirefoxAccounts	INFO	Can't get keys; user is not verified
+1747104679811	FirefoxAccounts	ERROR	FxA rejecting with error UNVERIFIED_ACCOUNT, details: undefined
+1747104679811	FirefoxAccounts	INFO	Can't fetch keys, so unable to determine command keys
+1747104679812	FirefoxAccounts	TRACE	Getting command keys: https://identity.mozilla.com/cmd/close-uri/v1
+1747104679812	FirefoxAccounts	ERROR	Background refresh of initial profile failed: Error: UNVERIFIED_ACCOUNT(resource://gre/modules/FxAccounts.sys.mjs:1655:18) JS Stack trace: _error@FxAccounts.sys.mjs:1655:18
+withSessionToken@FxAccounts.sys.mjs:874:18
+1747104679814	FirefoxAccounts	INFO	Generating and persisting encrypted key (false, false)
+1747104679815	FirefoxAccounts	INFO	Can't get keys; user is not verified
+1747104679815	FirefoxAccounts	INFO	Can't fetch keys, so unable to determine command keys
+1747104679816	Sync.Service	DEBUG	User-Agent: LibreWolf/138.0.1-2 (Linux x86_64) FxSync/1.140.0.20250503215608.desktop
+1747104679817	Sync.Service	INFO	Starting sync at 2025-05-13 08:21:19 in browser session bQVBUik8IiG5
+1747104679817	Sync.Service	DEBUG	In sync: should login.
+1747104679817	Sync.Service	INFO	User logged in successfully - verifying login.
+1747104679817	FirefoxAccounts	DEBUG	FxAccountsProfileClient: Requested profile
+1747104679817	FirefoxAccounts	DEBUG	getOAuthToken enter
+1747104679818	Sync.SyncAuthManager	DEBUG	unlockAndVerifyAuthState has an unverified user
+1747104679818	Sync.Status	DEBUG	Status.login: success.login => error.login.reason.account
+1747104679818	Sync.Status	DEBUG	Status.service: success.status_ok => error.login.failed
+1747104679818	Sync.Service	DEBUG	Fetching unlocked auth state returned error.login.reason.account
+1747104679818	Sync.ErrorHandler	ERROR	Sync encountered a login error
+1747104679818	Sync.SyncScheduler	DEBUG	Clearing sync triggers and the global score.
+1747104679819	Sync.Service	DEBUG	Exception calling WrappedLock: Error: Login failed: error.login.reason.account(resource://services-sync/service.sys.mjs:1041:15) JS Stack trace: onNotify@service.sys.mjs:1041:15
+1747104679819	FirefoxAccounts	ERROR	FxA rejecting with error UNVERIFIED_ACCOUNT, details: undefined
+1747104679819	Sync.Service	DEBUG	Not syncing: login returned false.
+1747104679819	FirefoxAccounts	ERROR	Background refresh of initial profile failed: Error: UNVERIFIED_ACCOUNT(resource://gre/modules/FxAccounts.sys.mjs:1655:18) JS Stack trace: _error@FxAccounts.sys.mjs:1655:18
+withSessionToken@FxAccounts.sys.mjs:874:18
