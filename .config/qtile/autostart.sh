@@ -12,3 +12,4 @@ fi
 if ! pgrep -u "$UID" -x xfce4-clipman >/dev/null; then
     xfce4-clipman &
 fi
+
