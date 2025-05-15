@@ -35,6 +35,7 @@ from libqtile.utils import guess_terminal
 mod = "mod4"
 terminal = guess_terminal()
 mymenu = "rofi -show drun"
+clipboard = "xfce4-popup-clipman"
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -84,7 +85,8 @@ keys = [
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
 
-    	Key([mod], "d", lazy.spawn(mymenu), desc="Launch app launcher"),
+	Key([mod], "d", lazy.spawn(mymenu), desc="Launch app launcher"),
+	Key([mod], "v", lazy.spawn(clipboard), desc="Launch clipboard manager"),
 
 	Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +3%"), desc="Raise Volume by 3%"),
 	Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -3%"), desc="Lower Volume by 3%"),
