@@ -1,41 +1,83 @@
-# Copyright (c) 2010 Aldo Cortesi
-# Copyright (c) 2010, 2014 dequis
-# Copyright (c) 2012 Randall Ma
-# Copyright (c) 2012-2014 Tycho Andersen
-# Copyright (c) 2012 Craig Barnes
-# Copyright (c) 2013 horsik
-# Copyright (c) 2013 Tao Sauvage
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
-
 import os
 import subprocess
+import colors
 
 from libqtile import bar, layout, qtile, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
+from qtile_extras import widget
+# from qtile_extras.widget.decorations import PowerLineDecoration
+from qtile_extras.widget import decorations
+from qtile_extras.widget.decorations import RectDecoration
+
+
+
 mod = "mod4"
 terminal = guess_terminal()
-mymenu = "rofi -show drun"
+mymenu = "dmenu_run -fn 'Cascadia Code-10'"
 clipboard = "xfce4-popup-clipman"
+
+colors, backgroundColor, foregroundColor, workspaceColor, chordColor = colors.gruvbox()
+
+
+right_hand1 = {
+    "decorations": [
+        RectDecoration(colour=colors[11], radius=[0, 4, 4, 0], filled=True, padding_y=4, padding_x=0)
+    ],
+    "padding": 10,
+}
+
+
+left_hand1 = {
+    "decorations": [
+        RectDecoration(colour=colors[6], radius=[4, 0, 0, 4], filled=True, padding_y=4, group=True)
+    ],
+    "padding": 10,
+}
+
+left_hand2 = {
+    "decorations": [
+        RectDecoration(colour=colors[4], radius=[4, 0, 0, 4], filled=True, padding_y=4, group=True)
+    ],
+    "padding": 10,
+}
+
+left_hand3 = {
+    "decorations": [
+        RectDecoration(colour=colors[5], radius=[4, 0, 0, 4], filled=True, padding_y=4, group=True)
+    ],
+    "padding": 10,
+}
+
+
+left_hand4 = {
+    "decorations": [
+        RectDecoration(colour=colors[7], radius=[4, 0, 0, 4], filled=True, padding_y=4, group=True)
+    ],
+    "padding": 10,
+}
+
+left_hand5 = {
+    "decorations": [
+        RectDecoration(colour=colors[8], radius=[4, 0, 0, 4], filled=True, padding_y=4, group=True)
+    ],
+    "padding": 10,
+}
+
+left_hand6 = {
+    "decorations": [
+        RectDecoration(colour=colors[3], radius=[4, 0, 0, 4], filled=True, padding_y=4, group=True)
+    ],
+    "padding": 10,
+}
+
+
+def open_launcher():
+    qtile.cmd_spawn(mymenu)
+
+
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -82,61 +124,60 @@ keys = [
     Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
-
 
 	Key([mod], "d", lazy.spawn(mymenu), desc="Launch app launcher"),
 	Key([mod], "v", lazy.spawn(clipboard), desc="Launch clipboard manager"),
-
 	Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +3%"), desc="Raise Volume by 3%"),
 	Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -3%"), desc="Lower Volume by 3%"),
 	Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle"), desc="Mute/Unmute Volume"),
-
 ]
 
 # Add key bindings to switch VTs in Wayland.
 # We can't check qtile.core.name in default config as it is loaded before qtile is started
 # We therefore defer the check until the key binding is run by using .when(func=...)
-for vt in range(1, 8):
-    keys.append(
-        Key(
-            ["control", "mod1"],
-            f"f{vt}",
-            lazy.core.change_vt(vt).when(func=lambda: qtile.core.name == "wayland"),
-            desc=f"Switch to VT{vt}",
-        )
-    )
+# for vt in range(1, 8):
+#     keys.append(
+#         Key(
+#             ["control", "mod1"],
+#             f"f{vt}",
+#             lazy.core.change_vt(vt).when(func=lambda: qtile.core.name == "wayland"),
+#             desc=f"Switch to VT{vt}",
+#         )
+#     )
 
+groups = []
+group_names = ["1", "2", "3", "4", "5", "6"]
+group_labels = ["1", "2", "3", "4", "5", "6"]
+group_layouts = ["columns","columns","columns","columns","columns","columns"]
 
-groups = [Group(i) for i in "123456789"]
+# Add group names, labels, and default layouts to the groups object.
+for i in range(len(group_names)):
+    groups.append(
+        Group(
+            name=group_names[i],
+            layout=group_layouts[i].lower(),
+            label=group_labels[i],
+        ))
 
+# Add group specific keybindings
 for i in groups:
-    keys.extend(
-        [
-            # mod + group number = switch to group
-            Key(
-                [mod],
-                i.name,
-                lazy.group[i.name].toscreen(),
-                desc=f"Switch to group {i.name}",
-            ),
-            # mod + shift + group number = switch to & move focused window to group
-            Key(
-                [mod, "shift"],
-                i.name,
-                lazy.window.togroup(i.name, switch_group=True),
-                desc=f"Switch to & move focused window to group {i.name}",
-            ),
-            # Or, use below if you prefer not to switch to that group.
-            # # mod + shift + group number = move focused window to group
-            # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
-            #     desc="move focused window to group {}".format(i.name)),
-        ]
-    )
+    keys.extend([
+        Key([mod], i.name, lazy.group[i.name].toscreen(), desc="Mod + number to move to that group."),
+        Key([mod, "shift"], i.name, lazy.window.togroup(i.name), desc="Move focused window to new group."),
+    ])
+
+
+# Define layouts and layout themes
+layout_theme = {
+        "margin":2,
+        "border_width": 3,
+        "border_focus": colors[6],
+        "border_normal": colors[2]
+    }
 
 layouts = [
-    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
-    layout.Max(),
+    layout.Columns(**layout_theme),
+    layout.Max(**layout_theme),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
@@ -157,40 +198,124 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
+
+logo = widget.TextBox(text="Ω", font="Cascadia Code", mouse_callbacks={"Button1": open_launcher}, fontsize=15, background=colors[4], margin=3, padding=7)
+spacer1 = widget.Spacer(length=1, background=colors[4])
+spacer3 = widget.Spacer(background=colors[0])
+spacer4 = widget.Spacer(length=4, background=colors[0])
+groupbox =  widget.GroupBox(
+                font="Cascadia Mono",
+                fontsize=15,
+                padding_x=5,
+                padding_y=5,
+                rounded=False,
+                center_aligned=True,
+                disable_drag=True,
+                borderwidth=3,
+                highlight_method="line",
+                hide_unused = True,
+                active=colors[6],
+                inactive=colors[1],
+                highlight_color=colors[0],
+                this_current_screen_border=colors[3],
+                this_screen_border=colors[7],
+                other_screen_border=colors[4],
+                other_current_screen_border=colors[3],
+                background=colors[0],
+                foreground=colors[3],
+            )
+cpu = widget.CPU(font="Cascadia Code", format="{load_percent}%", foreground=colors[2], background=colors[0], **right_hand1)
+cpuicon = widget.TextBox(text = "", fontsize = 20, font = "Cascadia Mono", background = colors[0], foreground = colors[0], **left_hand1)
+
+mem = widget.Memory(font="Cascadia Code", format="{MemUsed:.0f}{mm}", background=colors[0], foreground=colors[2], **right_hand1)
+memicon = widget.TextBox(text = "󰈀", fontsize = 20, font = "Cascadia Mono", background = colors[0], foreground = colors[0], **left_hand3)
+
+clockicon = widget.TextBox(text = "", fontsize = 20, font = "Cascadia Mono", background = colors[0], foreground = colors[0], **left_hand4)
+clock = widget.Clock(font="Cascadia Code", format="%a %d %b %I:%M:%S", foreground=colors[2], background=colors[0], **right_hand1)
+
+volicon = widget.TextBox(text = "󰕾", fontsize = 20, font = "Cascadia Mono", background = colors[0], foreground = colors[0], **left_hand5)
+vol = widget.Volume(fmt="{}", font="Cascadia Code", foreground=colors[2], background=colors[0], **right_hand1)
+
+curlayout= widget.CurrentLayoutIcon(scale=0.5, background = colors[0], **left_hand6)
+layoutname = widget.CurrentLayout(font = "Cascadia Code", foreground=colors[2], background=colors[0], **right_hand1)
+
+tray = widget.Systray(background = colors[0])
+
 screens = [
     Screen(
-        top=bar.Bar(
-            [
-                widget.CurrentLayout(),
-                widget.GroupBox(),
-                widget.Prompt(),
-                widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                widget.TextBox("default config", name="default"),
-                widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
-                # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
-                # widget.StatusNotifier(),
-                widget.Systray(),
-                widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
-                widget.QuickExit(),
+        top=bar.Bar([
+            logo,
+            spacer1,
+            groupbox,
+            spacer3,
+            curlayout,
+            layoutname,
+            spacer4,
+            cpuicon,
+            cpu,
+            spacer4,
+            memicon,
+            mem,
+            spacer4,
+            clockicon,
+            clock,
+            spacer4,
+            volicon,
+            vol,
+            spacer4,
+            tray,
+            spacer4,
             ],
-            24,
-            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+            margin=0,
+            size=24
         ),
-        # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
-        # By default we handle these events delayed to already improve performance, however your system might still be struggling
-        # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
-        # x11_drag_polling_rate = 60,
-        wallpaper = "~/.local/share/backgrounds/wallpaper.jpg",
-        wallpaper_mode = "fill",
     ),
 ]
+
+
+
+
+
+
+
+
+
+
+
+# screens = [
+#     Screen(
+#         top=bar.Bar(
+#             [
+#                 widget.CurrentLayout(),
+#                 widget.GroupBox(),
+#                 widget.Prompt(),
+#                 widget.WindowName(),
+#                 widget.Chord(
+#                     chords_colors={
+#                         "launch": ("#ff0000", "#ffffff"),
+#                     },
+#                     name_transform=lambda name: name.upper(),
+#                 ),
+#                 widget.TextBox("default config", name="default"),
+#                 widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
+#                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
+#                 # widget.StatusNotifier(),
+#                 widget.Systray(),
+#                 widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
+#                 widget.QuickExit(),
+#             ],
+#             24,
+#             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
+#             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+#         ),
+#         # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
+#         # By default we handle these events delayed to already improve performance, however your system might still be struggling
+#         # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
+#         # x11_drag_polling_rate = 60,
+#         wallpaper = "~/.local/share/backgrounds/wallpaper.jpg",
+#         wallpaper_mode = "fill",
+#     ),
+# ]
 
 # Drag floating layouts.
 mouse = [
