@@ -24,7 +24,7 @@ colors, backgroundColor, foregroundColor, workspaceColor, chordColor = colors.gr
 
 right_hand1 = {
     "decorations": [
-        RectDecoration(colour=colors[11], radius=[0, 4, 4, 0], filled=True, padding_y=4, padding_x=0)
+        RectDecoration(colour=colors[11], radius=[0, 4, 4, 0], filled=True, padding_y=0, padding_x=0)
     ],
     "padding": 10,
 }
@@ -32,21 +32,21 @@ right_hand1 = {
 
 left_hand1 = {
     "decorations": [
-        RectDecoration(colour=colors[6], radius=[4, 0, 0, 4], filled=True, padding_y=4, group=True)
+        RectDecoration(colour=colors[6], radius=[4, 0, 0, 4], filled=True, padding_y=0, group=True)
     ],
     "padding": 10,
 }
 
 left_hand2 = {
     "decorations": [
-        RectDecoration(colour=colors[4], radius=[4, 0, 0, 4], filled=True, padding_y=4, group=True)
+        RectDecoration(colour=colors[4], radius=[4, 0, 0, 4], filled=True, padding_y=0, group=True)
     ],
     "padding": 10,
 }
 
 left_hand3 = {
     "decorations": [
-        RectDecoration(colour=colors[5], radius=[4, 0, 0, 4], filled=True, padding_y=4, group=True)
+        RectDecoration(colour=colors[5], radius=[4, 0, 0, 4], filled=True, padding_y=0, group=True)
     ],
     "padding": 10,
 }
@@ -54,21 +54,21 @@ left_hand3 = {
 
 left_hand4 = {
     "decorations": [
-        RectDecoration(colour=colors[7], radius=[4, 0, 0, 4], filled=True, padding_y=4, group=True)
+        RectDecoration(colour=colors[7], radius=[4, 0, 0, 4], filled=True, padding_y=0, group=True)
     ],
     "padding": 10,
 }
 
 left_hand5 = {
     "decorations": [
-        RectDecoration(colour=colors[8], radius=[4, 0, 0, 4], filled=True, padding_y=4, group=True)
+        RectDecoration(colour=colors[8], radius=[4, 0, 0, 4], filled=True, padding_y=0, group=True)
     ],
     "padding": 10,
 }
 
 left_hand6 = {
     "decorations": [
-        RectDecoration(colour=colors[3], radius=[4, 0, 0, 4], filled=True, padding_y=4, group=True)
+        RectDecoration(colour=colors[3], radius=[4, 0, 0, 4], filled=True, padding_y=0, group=True)
     ],
     "padding": 10,
 }
@@ -206,13 +206,13 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 
-logo = widget.TextBox(text="π", font="Cascadia Code", mouse_callbacks={"Button1": open_launcher}, fontsize=15, background=colors[4], margin=3, padding=7)
+logo = widget.TextBox(text="π", font="Cascadia Code", mouse_callbacks={"Button1": open_launcher}, fontsize=15, background=colors[4], margin=2, padding=7)
 spacer1 = widget.Spacer(length=1, background=colors[4])
 spacer3 = widget.Spacer(background=colors[0])
 spacer4 = widget.Spacer(length=4, background=colors[0])
 groupbox =  widget.GroupBox(
                 font="Cascadia Mono",
-                fontsize=15,
+                fontsize=12,
                 padding_x=5,
                 padding_y=5,
                 rounded=False,
@@ -238,7 +238,7 @@ mem = widget.Memory(font="Cascadia Code", format="{MemUsed:.0f}{mm}", background
 memicon = widget.TextBox(text = "󰈀", fontsize = 20, font = "Cascadia Mono", background = colors[0], foreground = colors[0], **left_hand3)
 
 clockicon = widget.TextBox(text = "", fontsize = 20, font = "Cascadia Mono", background = colors[0], foreground = colors[0], **left_hand4)
-clock = widget.Clock(font="Cascadia Code", format="%a %d %b %I:%M:%S", foreground=colors[2], background=colors[0], **right_hand1)
+clock = widget.Clock(font="Cascadia Code", format="%a %d %b %I:%M", foreground=colors[2], background=colors[0], **right_hand1)
 
 volicon = widget.TextBox(
         text = "󰕾",
@@ -262,7 +262,7 @@ vol = widget.Volume(
         **right_hand1
     )
 
-curlayout= widget.CurrentLayoutIcon(scale=0.5, background = colors[0], **left_hand6)
+curlayout= widget.CurrentLayoutIcon(scale=0.65, background = colors[0], **left_hand6)
 layoutname = widget.CurrentLayout(font = "Cascadia Code", foreground=colors[2], background=colors[0], **right_hand1)
 
 tray = widget.Systray(background = colors[0])
@@ -293,7 +293,7 @@ screens = [
             spacer4,
             ],
             margin=0,
-            size=24
+            size=18
         ),
         wallpaper = "~/.local/share/backgrounds/wallpaper.jpg",
         wallpaper_mode = "fill"

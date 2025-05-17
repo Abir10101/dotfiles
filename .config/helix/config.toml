@@ -9,7 +9,7 @@ cursorline = true
 line-number = "relative"
 # Force the theme to show colors
 true-color = true
-mouse = false
+# mouse = true
 text-width = 80
 
 [editor.soft-wrap]
