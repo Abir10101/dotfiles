@@ -3,7 +3,7 @@ import subprocess
 import colors
 
 from libqtile import bar, layout, qtile, widget, hook
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
@@ -75,7 +75,7 @@ left_hand6 = {
 
 
 def open_launcher():
-    qtile.cmd_spawn(mymenu)
+    qtile.spawn(mymenu)
 
 
 
@@ -167,6 +167,13 @@ for i in groups:
     ])
 
 
+groups.append(
+    ScratchPad("scratchpad", [
+        DropDown("volume", "pavucontrol", width=0.5, height=0.6, x=0.25, y=0.1, opacity=1),
+    ])
+)
+
+
 # Define layouts and layout themes
 layout_theme = {
         "margin":2,
@@ -199,7 +206,7 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 
-logo = widget.TextBox(text="Ω", font="Cascadia Code", mouse_callbacks={"Button1": open_launcher}, fontsize=15, background=colors[4], margin=3, padding=7)
+logo = widget.TextBox(text="π", font="Cascadia Code", mouse_callbacks={"Button1": open_launcher}, fontsize=15, background=colors[4], margin=3, padding=7)
 spacer1 = widget.Spacer(length=1, background=colors[4])
 spacer3 = widget.Spacer(background=colors[0])
 spacer4 = widget.Spacer(length=4, background=colors[0])
@@ -233,8 +240,27 @@ memicon = widget.TextBox(text = "󰈀", fontsize = 20, font = "Cascadia Mono", b
 clockicon = widget.TextBox(text = "", fontsize = 20, font = "Cascadia Mono", background = colors[0], foreground = colors[0], **left_hand4)
 clock = widget.Clock(font="Cascadia Code", format="%a %d %b %I:%M:%S", foreground=colors[2], background=colors[0], **right_hand1)
 
-volicon = widget.TextBox(text = "󰕾", fontsize = 20, font = "Cascadia Mono", background = colors[0], foreground = colors[0], **left_hand5)
-vol = widget.Volume(fmt="{}", font="Cascadia Code", foreground=colors[2], background=colors[0], **right_hand1)
+volicon = widget.TextBox(
+        text = "󰕾",
+        fontsize = 20,
+        font = "Cascadia Mono",
+        background = colors[0],
+        foreground = colors[0],
+        mouse_callbacks={
+            "Button1": lazy.group["scratchpad"].dropdown_toggle("volume")
+        },
+        **left_hand5
+    )
+vol = widget.Volume(
+        fmt="{}",
+        mute_command="pamixer -t",
+        get_volume_command="pamixer --get-volume-human",
+        update_interval=0.3,
+        font="Cascadia Code",
+        foreground=colors[2],
+        background=colors[0],
+        **right_hand1
+    )
 
 curlayout= widget.CurrentLayoutIcon(scale=0.5, background = colors[0], **left_hand6)
 layoutname = widget.CurrentLayout(font = "Cascadia Code", foreground=colors[2], background=colors[0], **right_hand1)
@@ -269,18 +295,10 @@ screens = [
             margin=0,
             size=24
         ),
+        wallpaper = "~/.local/share/backgrounds/wallpaper.jpg",
+        wallpaper_mode = "fill"
     ),
 ]
-
-
-
-
-
-
-
-
-
-
 
 # screens = [
 #     Screen(
