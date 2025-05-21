@@ -6,6 +6,9 @@
 nm-applet &
 picom --config ~/.config/picom/picom.conf &
 xfce4-clipman &
+export XCURSOR_THEME=macOS
+export XCURSOR_SIZE=23
 
 # Start Qtile
 exec qtile start
+# exec /usr/local/bin/startdwm.sh

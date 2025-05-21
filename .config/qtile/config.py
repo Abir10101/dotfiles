@@ -18,6 +18,7 @@ mod = "mod4"
 terminal = guess_terminal()
 mymenu = "dmenu_run -fn 'Cascadia Code-10'"
 clipboard = "xfce4-popup-clipman"
+fontface = "Cascadia Code Bold";
 
 colors, backgroundColor, foregroundColor, workspaceColor, chordColor = colors.gruvbox()
 
@@ -77,17 +78,16 @@ left_hand6 = {
 def open_launcher():
     qtile.spawn(mymenu)
 
-
-
 keys = [
     # A list of available commands that can be bound to keys can be found
     # at https://docs.qtile.org/en/latest/manual/config/lazy.html
     # Switch between windows
-    Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
-    Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
-    Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
-    Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
-    Key(["mod1"], "tab", lazy.layout.next(), desc="Move window focus to other window"),
+    # Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
+    # Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
+    # Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
+    # Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
+    Key([mod], "j", lazy.layout.next(), desc="Move window focus to other window"),
+    Key([mod], "k", lazy.layout.previous(), desc="Move window focus to other window"),
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
     Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
@@ -113,15 +113,17 @@ keys = [
     ),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     # Toggle between different layouts as defined below
-    Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
+    # Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
-    Key(
-        [mod],
-        "f",
-        lazy.window.toggle_fullscreen(),
-        desc="Toggle fullscreen on the focused window",
-    ),
-    Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
+    Key([mod], "m", lazy.to_layout_index(1), desc="Change Layout to Max"),
+    Key([mod], "t", lazy.to_layout_index(0), desc="Change Layout to tile"),
+    # Key(
+    #     [mod],
+    #     "f",
+    #     lazy.window.toggle_fullscreen(),
+    #     desc="Toggle fullscreen on the focused window",
+    # ),
+    Key([mod], "f", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
 
@@ -211,8 +213,8 @@ spacer1 = widget.Spacer(length=1, background=colors[4])
 spacer3 = widget.Spacer(background=colors[0])
 spacer4 = widget.Spacer(length=4, background=colors[0])
 groupbox =  widget.GroupBox(
-                font="Cascadia Mono",
-                fontsize=12,
+                font="Cascadia Code Bold",
+                fontsize=14,
                 padding_x=5,
                 padding_y=5,
                 rounded=False,
@@ -220,7 +222,7 @@ groupbox =  widget.GroupBox(
                 disable_drag=True,
                 borderwidth=3,
                 highlight_method="line",
-                hide_unused = True,
+                # hide_unused = True,
                 active=colors[6],
                 inactive=colors[1],
                 highlight_color=colors[0],
@@ -234,7 +236,7 @@ groupbox =  widget.GroupBox(
 cpu = widget.CPU(font="Cascadia Code", format="{load_percent}%", foreground=colors[2], background=colors[0], **right_hand1)
 cpuicon = widget.TextBox(text = "", fontsize = 20, font = "Cascadia Mono", background = colors[0], foreground = colors[0], **left_hand1)
 
-mem = widget.Memory(font="Cascadia Code", format="{MemUsed:.0f}{mm}", background=colors[0], foreground=colors[2], **right_hand1)
+mem = widget.Memory(font="Cascadia Code", format="{NotAvailable:.0f}{mm}", background=colors[0], foreground=colors[2], **right_hand1)
 memicon = widget.TextBox(text = "󰈀", fontsize = 20, font = "Cascadia Mono", background = colors[0], foreground = colors[0], **left_hand3)
 
 clockicon = widget.TextBox(text = "", fontsize = 20, font = "Cascadia Mono", background = colors[0], foreground = colors[0], **left_hand4)
@@ -270,7 +272,7 @@ tray = widget.Systray(background = colors[0])
 screens = [
     Screen(
         top=bar.Bar([
-            logo,
+            # logo,
             spacer1,
             groupbox,
             spacer3,
