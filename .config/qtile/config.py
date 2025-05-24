@@ -72,7 +72,8 @@ keys = [
     #     lazy.window.toggle_fullscreen(),
     #     desc="Toggle fullscreen on the focused window",
     # ),
-    Key([mod], "f", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
+    # Key([mod], "f", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
+    Key([mod], "f", lazy.to_layout_index(2), desc="Toggle floating on the focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
 
@@ -136,11 +137,28 @@ groups.append(
 
 # Define layouts and layout themes
 layout_theme = {
-        "margin":0,
-        "border_width": 5,
-        "border_focus": accentColor,
-        "border_normal": backgroundColor
-    }
+    "margin":0,
+    "border_width": 5,
+    "border_focus": accentColor,
+    "border_normal": backgroundColor
+}
+
+floating_layout = layout.Floating(
+    margin = 0,
+    border_focus = accentColor,
+    border_normal = backgroundColor,
+    border_width = 3,
+    float_rules=[
+        # Run the utility of `xprop` to see the wm class and name of an X client.
+        *layout.Floating.default_float_rules,
+        Match(wm_class="confirmreset"),  # gitk
+        Match(wm_class="makebranch"),  # gitk
+        Match(wm_class="maketag"),  # gitk
+        Match(wm_class="ssh-askpass"),  # ssh-askpass
+        Match(title="branchdialog"),  # gitk
+        Match(title="pinentry"),  # GPG key password entry
+    ]
+)
 
 layouts = [
     # layout.Columns(**layout_theme),
@@ -156,6 +174,7 @@ layouts = [
     # layout.TreeTab(),
     # layout.VerticalTile(**layout_theme),
     # layout.Zoomy(),
+    floating_layout,
 ]
 
 # widget_defaults = dict(
@@ -274,18 +293,7 @@ follow_mouse_focus = False
 bring_front_click = False
 floats_kept_above = True
 cursor_warp = False
-floating_layout = layout.Floating(
-    float_rules=[
-        # Run the utility of `xprop` to see the wm class and name of an X client.
-        *layout.Floating.default_float_rules,
-        Match(wm_class="confirmreset"),  # gitk
-        Match(wm_class="makebranch"),  # gitk
-        Match(wm_class="maketag"),  # gitk
-        Match(wm_class="ssh-askpass"),  # ssh-askpass
-        Match(title="branchdialog"),  # gitk
-        Match(title="pinentry"),  # GPG key password entry
-    ]
-)
+
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
