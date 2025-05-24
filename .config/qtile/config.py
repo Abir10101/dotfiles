@@ -8,75 +8,24 @@ from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
 from qtile_extras import widget
-# from qtile_extras.widget.decorations import PowerLineDecoration
-from qtile_extras.widget import decorations
-from qtile_extras.widget.decorations import RectDecoration
-
 
 
 mod = "mod4"
+fontFace = "Cascadia Code Bold";
+fontSize = 14
 terminal = guess_terminal()
-mymenu = "dmenu_run -fn 'Cascadia Code-10'"
 clipboard = "xfce4-popup-clipman"
-fontface = "Cascadia Code Bold";
 
 colors, backgroundColor, foregroundColor, workspaceColor, chordColor = colors.gruvbox()
+accentColor = colors[9]
 
+mymenu = "dmenu_run"
+mymenu += " -fn 'Cascadia Code:size=12:style=Bold'"
+mymenu += f" -nb '{backgroundColor}'"
+mymenu += f" -nf '{foregroundColor}'"
+mymenu += f" -sb '{accentColor[1]}'"
+mymenu += f" -sf '{foregroundColor}'"
 
-right_hand1 = {
-    "decorations": [
-        RectDecoration(colour=colors[11], radius=[0, 4, 4, 0], filled=True, padding_y=0, padding_x=0)
-    ],
-    "padding": 10,
-}
-
-
-left_hand1 = {
-    "decorations": [
-        RectDecoration(colour=colors[6], radius=[4, 0, 0, 4], filled=True, padding_y=0, group=True)
-    ],
-    "padding": 10,
-}
-
-left_hand2 = {
-    "decorations": [
-        RectDecoration(colour=colors[4], radius=[4, 0, 0, 4], filled=True, padding_y=0, group=True)
-    ],
-    "padding": 10,
-}
-
-left_hand3 = {
-    "decorations": [
-        RectDecoration(colour=colors[5], radius=[4, 0, 0, 4], filled=True, padding_y=0, group=True)
-    ],
-    "padding": 10,
-}
-
-
-left_hand4 = {
-    "decorations": [
-        RectDecoration(colour=colors[7], radius=[4, 0, 0, 4], filled=True, padding_y=0, group=True)
-    ],
-    "padding": 10,
-}
-
-left_hand5 = {
-    "decorations": [
-        RectDecoration(colour=colors[8], radius=[4, 0, 0, 4], filled=True, padding_y=0, group=True)
-    ],
-    "padding": 10,
-}
-
-left_hand6 = {
-    "decorations": [
-        RectDecoration(colour=colors[3], radius=[4, 0, 0, 4], filled=True, padding_y=0, group=True)
-    ],
-    "padding": 10,
-}
-
-
-def open_launcher():
-    qtile.spawn(mymenu)
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -96,7 +45,7 @@ keys = [
     Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
     # Grow windows. If current window is on the edge of screen and direction
     # will be to screen edge - window would shrink.
-    Key([mod, "control"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
+    Key([mod, "control"], "h", lazy.layout.grow_left(), lazy.layout.grow().when(layout=["monadtall"]), desc="Grow window to the left"),
     Key([mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
     Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
@@ -113,10 +62,10 @@ keys = [
     ),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     # Toggle between different layouts as defined below
-    # Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
+    Key([mod], "n", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
-    Key([mod], "m", lazy.to_layout_index(1), desc="Change Layout to Max"),
-    Key([mod], "t", lazy.to_layout_index(0), desc="Change Layout to tile"),
+    Key([mod], "m", lazy.to_layout_index(0), desc="Change Layout to Max"),
+    Key([mod], "t", lazy.to_layout_index(1), desc="Change Layout to tile"),
     # Key(
     #     [mod],
     #     "f",
@@ -148,18 +97,27 @@ keys = [
 #     )
 
 groups = []
-group_names = ["1", "2", "3", "4", "5", "6"]
-group_labels = ["1", "2", "3", "4", "5", "6"]
-group_layouts = ["columns","columns","columns","columns","columns","columns"]
+group_names = ["1", "2", "3", "4", "5"]
+group_labels = ["1", "2", "3", "4", "5"]
+group_layouts = ["monadtall","monadtall","monadtall","monadtall","monadtall"]
+# group_apps = ["st", "LibreWolf", "", "", ""]
 
 # Add group names, labels, and default layouts to the groups object.
 for i in range(len(group_names)):
+    # groups.append(
+    #     Group(
+    #         name=group_names[i],
+    #         layout=group_layouts[i].lower(),
+    #         label=group_labels[i],
+    #         matches=Match(title=group_apps[i])
+    #     ))
     groups.append(
         Group(
             name=group_names[i],
             layout=group_layouts[i].lower(),
-            label=group_labels[i],
+            label=group_labels[i]
         ))
+
 
 # Add group specific keybindings
 for i in groups:
@@ -178,164 +136,130 @@ groups.append(
 
 # Define layouts and layout themes
 layout_theme = {
-        "margin":2,
-        "border_width": 3,
-        "border_focus": colors[6],
-        "border_normal": colors[2]
+        "margin":0,
+        "border_width": 5,
+        "border_focus": accentColor,
+        "border_normal": backgroundColor
     }
 
 layouts = [
-    layout.Columns(**layout_theme),
+    # layout.Columns(**layout_theme),
     layout.Max(**layout_theme),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-    # layout.MonadTall(),
-    # layout.MonadWide(),
+    layout.MonadTall(**layout_theme),
+    # layout.MonadWide(**layout_theme),
     # layout.RatioTile(),
-    # layout.Tile(),
+    # layout.Tile(**layout_theme),
     # layout.TreeTab(),
-    # layout.VerticalTile(),
+    # layout.VerticalTile(**layout_theme),
     # layout.Zoomy(),
 ]
 
-widget_defaults = dict(
-    font="Cascadia Code Regular",
-    fontsize=12,
-    padding=3,
-)
-extension_defaults = widget_defaults.copy()
+# widget_defaults = dict(
+#     font="Cascadia Code Regular",
+#     fontsize=12,
+#     padding=3,
+# )
+# extension_defaults = widget_defaults.copy()
 
+seperator = widget.TextBox(text = "┇", fontsize = fontSize, font = fontFace, background = colors[0], foreground = foregroundColor)
+openWindows = widget.TaskList(
+                    highlight_method='block',
+                    fontsize = fontSize,
+                    font = fontFace,
+                    icon_size=0,
+                    margin=0,
+                    padding_y=1,
+                    rounded=False,
+                    spacing=0,
+                    title_width_method='uniform',
+                    unfocused_border=colors[0],
+                    border=accentColor,
+                    foreground=foregroundColor
+                )
 
-logo = widget.TextBox(text="π", font="Cascadia Code", mouse_callbacks={"Button1": open_launcher}, fontsize=15, background=colors[4], margin=2, padding=7)
-spacer1 = widget.Spacer(length=1, background=colors[4])
-spacer3 = widget.Spacer(background=colors[0])
-spacer4 = widget.Spacer(length=4, background=colors[0])
 groupbox =  widget.GroupBox(
-                font="Cascadia Code Bold",
-                fontsize=14,
+                fontsize = fontSize,
+                font = fontFace,
                 padding_x=5,
-                padding_y=5,
                 rounded=False,
                 center_aligned=True,
                 disable_drag=True,
                 borderwidth=3,
-                highlight_method="line",
-                # hide_unused = True,
-                active=colors[6],
-                inactive=colors[1],
+                highlight_method="block",
+                active=workspaceColor,
+                inactive=foregroundColor,
                 highlight_color=colors[0],
-                this_current_screen_border=colors[3],
-                this_screen_border=colors[7],
-                other_screen_border=colors[4],
-                other_current_screen_border=colors[3],
-                background=colors[0],
-                foreground=colors[3],
+                this_current_screen_border=accentColor,
+                background=backgroundColor,
+                foreground=foregroundColor
             )
-cpu = widget.CPU(font="Cascadia Code", format="{load_percent}%", foreground=colors[2], background=colors[0], **right_hand1)
-cpuicon = widget.TextBox(text = "", fontsize = 20, font = "Cascadia Mono", background = colors[0], foreground = colors[0], **left_hand1)
 
-mem = widget.Memory(font="Cascadia Code", format="{NotAvailable:.0f}{mm}", background=colors[0], foreground=colors[2], **right_hand1)
-memicon = widget.TextBox(text = "󰈀", fontsize = 20, font = "Cascadia Mono", background = colors[0], foreground = colors[0], **left_hand3)
+cpu = widget.CPU(font=fontFace, fontsize = fontSize, format="{load_percent}%", foreground = foregroundColor, background = colors[0])
+cpuicon = widget.TextBox(text = "CPU:", fontsize = fontSize, font = fontFace, background = colors[0], foreground = foregroundColor)
 
-clockicon = widget.TextBox(text = "", fontsize = 20, font = "Cascadia Mono", background = colors[0], foreground = colors[0], **left_hand4)
-clock = widget.Clock(font="Cascadia Code", format="%a %d %b %I:%M", foreground=colors[2], background=colors[0], **right_hand1)
+mem = widget.Memory(font=fontFace, fontsize = fontSize, format="{NotAvailable:.0f}{mm}", background=colors[0], foreground=foregroundColor)
+memicon = widget.TextBox(text = "RAM:", fontsize = fontSize, font = fontFace, background = colors[0], foreground = foregroundColor)
+
+clock = widget.Clock(fontsize = fontSize, font = fontFace, format="%a %d %b %I:%M", foreground=foregroundColor, background=colors[0])
 
 volicon = widget.TextBox(
-        text = "󰕾",
-        fontsize = 20,
-        font = "Cascadia Mono",
+        text = "VOL:",
+        fontsize = fontSize,
+        font = fontFace,
         background = colors[0],
-        foreground = colors[0],
+        foreground = foregroundColor,
         mouse_callbacks={
             "Button1": lazy.group["scratchpad"].dropdown_toggle("volume")
-        },
-        **left_hand5
+        }
     )
 vol = widget.Volume(
         fmt="{}",
         mute_command="pamixer -t",
         get_volume_command="pamixer --get-volume-human",
         update_interval=0.3,
-        font="Cascadia Code",
-        foreground=colors[2],
-        background=colors[0],
-        **right_hand1
+        fontsize = fontSize,
+        font = fontFace,
+        foreground=foregroundColor,
+        background=colors[0]
     )
 
-curlayout= widget.CurrentLayoutIcon(scale=0.65, background = colors[0], **left_hand6)
-layoutname = widget.CurrentLayout(font = "Cascadia Code", foreground=colors[2], background=colors[0], **right_hand1)
+layoutname = widget.CurrentLayout(fontsize = fontSize, font = fontFace, foreground=foregroundColor, background=colors[0])
 
 tray = widget.Systray(background = colors[0])
 
 screens = [
     Screen(
         top=bar.Bar([
-            # logo,
-            spacer1,
             groupbox,
-            spacer3,
-            curlayout,
+            openWindows,
+            tray,
+            seperator,
             layoutname,
-            spacer4,
+            seperator,
             cpuicon,
             cpu,
-            spacer4,
+            seperator,
             memicon,
             mem,
-            spacer4,
-            clockicon,
-            clock,
-            spacer4,
+            seperator,
             volicon,
             vol,
-            spacer4,
-            tray,
-            spacer4,
-            ],
-            margin=0,
-            size=18
+            seperator,
+            clock,
+        ],
+        margin=0,
+        size=fontSize+8,
+        background=colors[0]
         ),
-        wallpaper = "~/.local/share/backgrounds/wallpaper.jpg",
+        wallpaper = "~/.local/share/backgrounds/wall6.png",
         wallpaper_mode = "fill"
     ),
 ]
 
-# screens = [
-#     Screen(
-#         top=bar.Bar(
-#             [
-#                 widget.CurrentLayout(),
-#                 widget.GroupBox(),
-#                 widget.Prompt(),
-#                 widget.WindowName(),
-#                 widget.Chord(
-#                     chords_colors={
-#                         "launch": ("#ff0000", "#ffffff"),
-#                     },
-#                     name_transform=lambda name: name.upper(),
-#                 ),
-#                 widget.TextBox("default config", name="default"),
-#                 widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
-#                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
-#                 # widget.StatusNotifier(),
-#                 widget.Systray(),
-#                 widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
-#                 widget.QuickExit(),
-#             ],
-#             24,
-#             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-#             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
-#         ),
-#         # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
-#         # By default we handle these events delayed to already improve performance, however your system might still be struggling
-#         # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
-#         # x11_drag_polling_rate = 60,
-#         wallpaper = "~/.local/share/backgrounds/wallpaper.jpg",
-#         wallpaper_mode = "fill",
-#     ),
-# ]
 
 # Drag floating layouts.
 mouse = [
