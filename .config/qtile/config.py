@@ -6,320 +6,323 @@ from libqtile import bar, layout, qtile, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
-
 from qtile_extras import widget
 
+# Configuration constants
+MOD = "mod4"
+FONT_FACE = "Cascadia Code Bold"
+FONT_SIZE = 14
+TERMINAL = guess_terminal()
+CLIPBOARD = "xfce4-popup-clipman"
 
-mod = "mod4"
-fontFace = "Cascadia Code Bold";
-fontSize = 14
-terminal = guess_terminal()
-clipboard = "xfce4-popup-clipman"
-
+# Color scheme setup
 colors, backgroundColor, foregroundColor, workspaceColor, chordColor = colors.gruvbox()
 accentColor = colors[9]
 
-mymenu = "dmenu_run"
-mymenu += " -fn 'Cascadia Code:size=12:style=Bold'"
-mymenu += f" -nb '{backgroundColor}'"
-mymenu += f" -nf '{foregroundColor}'"
-mymenu += f" -sb '{accentColor[1]}'"
-mymenu += f" -sf '{foregroundColor}'"
+# Menu configuration
+def build_menu_command():
+    """Build dmenu command with styling options."""
+    return (
+        f"dmenu_run"
+        f" -fn 'Cascadia Code:size=12:style=Bold'"
+        f" -nb '{backgroundColor}'"
+        f" -nf '{foregroundColor}'"
+        f" -sb '{accentColor[1]}'"
+        f" -sf '{foregroundColor}'"
+    )
 
+mymenu = build_menu_command()
 
+# Key bindings
 keys = [
-    # A list of available commands that can be bound to keys can be found
-    # at https://docs.qtile.org/en/latest/manual/config/lazy.html
-    # Switch between windows
-    # Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
-    # Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
-    # Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
-    # Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
-    Key([mod], "j", lazy.layout.next(), desc="Move window focus to other window"),
-    Key([mod], "k", lazy.layout.previous(), desc="Move window focus to other window"),
-    # Move windows between left/right columns or move up/down in current stack.
-    # Moving out of range in Columns layout will create new column.
-    Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
-    Key([mod, "shift"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
-    Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
-    Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
-    # Grow windows. If current window is on the edge of screen and direction
-    # will be to screen edge - window would shrink.
-    Key([mod, "control"], "h", lazy.layout.grow_left(), lazy.layout.grow().when(layout=["monadtall"]), desc="Grow window to the left"),
-    Key([mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
-    Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
-    Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
-    Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
-    # Toggle between split and unsplit sides of stack.
-    # Split = all windows displayed
-    # Unsplit = 1 window displayed, like Max layout, but still with
-    # multiple stack panes
-    Key(
-        [mod, "shift"],
-        "Return",
-        lazy.layout.toggle_split(),
-        desc="Toggle between split and unsplit sides of stack",
-    ),
-    Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
-    # Toggle between different layouts as defined below
-    Key([mod], "n", lazy.next_layout(), desc="Toggle between layouts"),
-    Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
-    Key([mod], "m", lazy.to_layout_index(0), desc="Change Layout to Max"),
-    Key([mod], "t", lazy.to_layout_index(1), desc="Change Layout to tile"),
-    # Key(
-    #     [mod],
-    #     "f",
-    #     lazy.window.toggle_fullscreen(),
-    #     desc="Toggle fullscreen on the focused window",
-    # ),
-    # Key([mod], "f", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
-    Key([mod], "f", lazy.to_layout_index(2), desc="Toggle floating on the focused window"),
-    Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
-    Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-
-	Key([mod], "d", lazy.spawn(mymenu), desc="Launch app launcher"),
-	Key([mod], "v", lazy.spawn(clipboard), desc="Launch clipboard manager"),
-	Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +3%"), desc="Raise Volume by 3%"),
-	Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -3%"), desc="Lower Volume by 3%"),
-	Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle"), desc="Mute/Unmute Volume"),
+    # Window focus navigation
+    Key([MOD], "j", lazy.layout.next(), desc="Move window focus to other window"),
+    Key([MOD], "k", lazy.layout.previous(), desc="Move window focus to other window"),
+    
+    # Window movement
+    Key([MOD, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
+    Key([MOD, "shift"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
+    Key([MOD, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
+    Key([MOD, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
+    
+    # Window resizing
+    Key([MOD, "control"], "h", lazy.layout.grow_left(), lazy.layout.grow().when(layout=["monadtall"]), desc="Grow window to the left"),
+    Key([MOD, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
+    Key([MOD, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
+    Key([MOD, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
+    Key([MOD], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
+    
+    # Layout and window management
+    Key([MOD, "shift"], "Return", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack"),
+    Key([MOD], "Return", lazy.spawn(TERMINAL), desc="Launch terminal"),
+    Key([MOD], "w", lazy.window.kill(), desc="Kill focused window"),
+    
+    # Layout switching
+    Key([MOD], "m", lazy.to_layout_index(0), desc="Change Layout to Max"),
+    Key([MOD], "t", lazy.to_layout_index(1), desc="Change Layout to tile"),
+    Key([MOD], "f", lazy.to_layout_index(2), desc="Toggle floating layout"),
+    
+    # System controls
+    Key([MOD, "control"], "r", lazy.reload_config(), desc="Reload the config"),
+    Key([MOD, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+    
+    # Application launchers
+    Key([MOD], "d", lazy.spawn(mymenu), desc="Launch app launcher"),
+    Key([MOD], "v", lazy.spawn(CLIPBOARD), desc="Launch clipboard manager"),
+    
+    # Audio controls
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +3%"), desc="Raise Volume by 3%"),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -3%"), desc="Lower Volume by 3%"),
+    Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle"), desc="Mute/Unmute Volume"),
 ]
 
-# Add key bindings to switch VTs in Wayland.
-# We can't check qtile.core.name in default config as it is loaded before qtile is started
-# We therefore defer the check until the key binding is run by using .when(func=...)
-# for vt in range(1, 8):
-#     keys.append(
-#         Key(
-#             ["control", "mod1"],
-#             f"f{vt}",
-#             lazy.core.change_vt(vt).when(func=lambda: qtile.core.name == "wayland"),
-#             desc=f"Switch to VT{vt}",
-#         )
-#     )
+# Group configuration
+GROUP_CONFIG = {
+    "names": ["1", "2", "3", "4", "5"],
+    "labels": ["1", "2", "3", "4", "5"],
+    "layouts": ["monadtall"] * 5
+}
 
-groups = []
-group_names = ["1", "2", "3", "4", "5"]
-group_labels = ["1", "2", "3", "4", "5"]
-group_layouts = ["monadtall","monadtall","monadtall","monadtall","monadtall"]
-# group_apps = ["st", "LibreWolf", "", "", ""]
-
-# Add group names, labels, and default layouts to the groups object.
-for i in range(len(group_names)):
-    # groups.append(
-    #     Group(
-    #         name=group_names[i],
-    #         layout=group_layouts[i].lower(),
-    #         label=group_labels[i],
-    #         matches=Match(title=group_apps[i])
-    #     ))
-    groups.append(
-        Group(
-            name=group_names[i],
-            layout=group_layouts[i].lower(),
-            label=group_labels[i]
+def create_groups():
+    """Create workspace groups with consistent configuration."""
+    groups = []
+    for i, name in enumerate(GROUP_CONFIG["names"]):
+        groups.append(Group(
+            name=name,
+            layout=GROUP_CONFIG["layouts"][i].lower(),
+            label=GROUP_CONFIG["labels"][i]
         ))
+    return groups
 
+groups = create_groups()
 
-# Add group specific keybindings
-for i in groups:
+# Add group-specific keybindings
+for group in groups:
     keys.extend([
-        Key([mod], i.name, lazy.group[i.name].toscreen(), desc="Mod + number to move to that group."),
-        Key([mod, "shift"], i.name, lazy.window.togroup(i.name), desc="Move focused window to new group."),
+        Key([MOD], group.name, lazy.group[group.name].toscreen(), 
+            desc="Mod + number to move to that group."),
+        Key([MOD, "shift"], group.name, lazy.window.togroup(group.name), 
+            desc="Move focused window to new group."),
     ])
 
-
+# Scratchpad configuration
 groups.append(
     ScratchPad("scratchpad", [
         DropDown("volume", "pavucontrol", width=0.5, height=0.6, x=0.25, y=0.1, opacity=1),
     ])
 )
 
-
-# Define layouts and layout themes
-layout_theme = {
-    "margin":0,
+# Layout themes and configurations
+LAYOUT_THEME = {
+    "margin": 0,
     "border_width": 5,
     "border_focus": accentColor,
     "border_normal": backgroundColor
 }
 
+FLOATING_THEME = {
+    "margin": 0,
+    "border_focus": accentColor,
+    "border_normal": backgroundColor,
+    "border_width": 3,
+}
+
+# Define floating layout with rules
 floating_layout = layout.Floating(
-    margin = 0,
-    border_focus = accentColor,
-    border_normal = backgroundColor,
-    border_width = 3,
+    **FLOATING_THEME,
     float_rules=[
-        # Run the utility of `xprop` to see the wm class and name of an X client.
         *layout.Floating.default_float_rules,
         Match(wm_class="confirmreset"),  # gitk
-        Match(wm_class="makebranch"),  # gitk
-        Match(wm_class="maketag"),  # gitk
+        Match(wm_class="makebranch"),   # gitk
+        Match(wm_class="maketag"),      # gitk
         Match(wm_class="ssh-askpass"),  # ssh-askpass
-        Match(title="branchdialog"),  # gitk
-        Match(title="pinentry"),  # GPG key password entry
+        Match(title="branchdialog"),    # gitk
+        Match(title="pinentry"),        # GPG key password entry
     ]
 )
 
+# Available layouts
 layouts = [
-    # layout.Columns(**layout_theme),
-    layout.Max(**layout_theme),
-    # Try more layouts by unleashing below layouts.
-    # layout.Stack(num_stacks=2),
-    # layout.Bsp(),
-    # layout.Matrix(),
-    layout.MonadTall(**layout_theme),
-    # layout.MonadWide(**layout_theme),
-    # layout.RatioTile(),
-    # layout.Tile(**layout_theme),
-    # layout.TreeTab(),
-    # layout.VerticalTile(**layout_theme),
-    # layout.Zoomy(),
+    layout.Max(**LAYOUT_THEME),
+    layout.MonadTall(**LAYOUT_THEME),
     floating_layout,
 ]
 
-# widget_defaults = dict(
-#     font="Cascadia Code Regular",
-#     fontsize=12,
-#     padding=3,
-# )
-# extension_defaults = widget_defaults.copy()
-
-seperator = widget.TextBox(text = "┇", fontsize = fontSize, font = fontFace, background = colors[0], foreground = foregroundColor)
-openWindows = widget.TaskList(
-                    highlight_method='block',
-                    fontsize = fontSize,
-                    font = fontFace,
-                    icon_size=0,
-                    margin=0,
-                    padding_y=1,
-                    rounded=False,
-                    spacing=0,
-                    title_width_method='uniform',
-                    unfocused_border=colors[0],
-                    border=accentColor,
-                    foreground=foregroundColor
-                )
-
-groupbox =  widget.GroupBox(
-                fontsize = fontSize,
-                font = fontFace,
-                padding_x=5,
-                rounded=False,
-                center_aligned=True,
-                disable_drag=True,
-                borderwidth=3,
-                highlight_method="block",
-                active=workspaceColor,
-                inactive=foregroundColor,
-                highlight_color=colors[0],
-                this_current_screen_border=accentColor,
-                background=backgroundColor,
-                foreground=foregroundColor
-            )
-
-cpu = widget.CPU(font=fontFace, fontsize = fontSize, format="{load_percent}%", foreground = foregroundColor, background = colors[0])
-cpuicon = widget.TextBox(text = "CPU:", fontsize = fontSize, font = fontFace, background = colors[0], foreground = foregroundColor)
-
-mem = widget.Memory(font=fontFace, fontsize = fontSize, format="{NotAvailable:.0f}{mm}", background=colors[0], foreground=foregroundColor)
-memicon = widget.TextBox(text = "RAM:", fontsize = fontSize, font = fontFace, background = colors[0], foreground = foregroundColor)
-
-clock = widget.Clock(fontsize = fontSize, font = fontFace, format="%a %d %b %I:%M", foreground=foregroundColor, background=colors[0])
-
-volicon = widget.TextBox(
-        text = "VOL:",
-        fontsize = fontSize,
-        font = fontFace,
-        background = colors[0],
-        foreground = foregroundColor,
-        mouse_callbacks={
-            "Button1": lazy.group["scratchpad"].dropdown_toggle("volume")
-        }
+# Widget factory functions for better organization
+def create_separator():
+    """Create a consistent separator widget."""
+    return widget.TextBox(
+        text="┇", 
+        fontsize=FONT_SIZE, 
+        font=FONT_FACE, 
+        background=colors[0], 
+        foreground=foregroundColor
     )
+
+def create_text_widget(text, **kwargs):
+    """Create a text widget with consistent styling."""
+    defaults = {
+        "fontsize": FONT_SIZE,
+        "font": FONT_FACE,
+        "background": colors[0],
+        "foreground": foregroundColor
+    }
+    defaults.update(kwargs)
+    return widget.TextBox(text=text, **defaults)
+
+# Widget definitions
+separator = create_separator()
+
+open_windows = widget.TaskList(
+    highlight_method='block',
+    fontsize=FONT_SIZE,
+    font=FONT_FACE,
+    icon_size=0,
+    margin=0,
+    padding_y=1,
+    rounded=False,
+    spacing=0,
+    title_width_method='uniform',
+    unfocused_border=colors[0],
+    border=accentColor,
+    foreground=foregroundColor
+)
+
+groupbox = widget.GroupBox(
+    fontsize=FONT_SIZE,
+    font=FONT_FACE,
+    padding_x=5,
+    rounded=False,
+    center_aligned=True,
+    disable_drag=True,
+    borderwidth=3,
+    highlight_method="block",
+    active=workspaceColor,
+    inactive=foregroundColor,
+    highlight_color=colors[0],
+    this_current_screen_border=accentColor,
+    background=backgroundColor,
+    foreground=foregroundColor
+)
+
+# System monitoring widgets
+cpu_icon = create_text_widget("CPU:")
+cpu = widget.CPU(
+    font=FONT_FACE, 
+    fontsize=FONT_SIZE, 
+    format="{load_percent}%", 
+    foreground=foregroundColor, 
+    background=colors[0]
+)
+
+mem_icon = create_text_widget("RAM:")
+mem = widget.Memory(
+    font=FONT_FACE, 
+    fontsize=FONT_SIZE, 
+    format="{NotAvailable:.0f}{mm}", 
+    background=colors[0], 
+    foreground=foregroundColor
+)
+
+clock = widget.Clock(
+    fontsize=FONT_SIZE, 
+    font=FONT_FACE, 
+    format="%a %d %b %I:%M", 
+    foreground=foregroundColor, 
+    background=colors[0]
+)
+
+# Volume control widgets
+vol_icon = widget.TextBox(
+    text="VOL:",
+    fontsize=FONT_SIZE,
+    font=FONT_FACE,
+    background=colors[0],
+    foreground=foregroundColor,
+    mouse_callbacks={
+        "Button1": lazy.group["scratchpad"].dropdown_toggle("volume")
+    }
+)
+
 vol = widget.Volume(
-        fmt="{}",
-        mute_command="pamixer -t",
-        get_volume_command="pamixer --get-volume-human",
-        update_interval=0.3,
-        fontsize = fontSize,
-        font = fontFace,
-        foreground=foregroundColor,
-        background=colors[0]
-    )
+    fmt="{}",
+    mute_command="pamixer -t",
+    get_volume_command="pamixer --get-volume-human",
+    update_interval=0.3,
+    fontsize=FONT_SIZE,
+    font=FONT_FACE,
+    foreground=foregroundColor,
+    background=colors[0]
+)
 
-layoutname = widget.CurrentLayout(fontsize = fontSize, font = fontFace, foreground=foregroundColor, background=colors[0])
+layout_name = widget.CurrentLayout(
+    fontsize=FONT_SIZE, 
+    font=FONT_FACE, 
+    foreground=foregroundColor, 
+    background=colors[0]
+)
 
-tray = widget.Systray(background = colors[0])
+tray = widget.Systray(background=colors[0])
 
+# Screen configuration
 screens = [
     Screen(
         top=bar.Bar([
             groupbox,
-            openWindows,
+            open_windows,
             tray,
-            seperator,
-            layoutname,
-            seperator,
-            cpuicon,
+            separator,
+            layout_name,
+            separator,
+            cpu_icon,
             cpu,
-            seperator,
-            memicon,
+            separator,
+            mem_icon,
             mem,
-            seperator,
-            volicon,
+            separator,
+            vol_icon,
             vol,
-            seperator,
+            separator,
             clock,
         ],
         margin=0,
-        size=fontSize+8,
+        size=FONT_SIZE + 8,
         background=colors[0]
         ),
-        wallpaper = "~/.local/share/backgrounds/wall6.png",
-        wallpaper_mode = "fill"
+        wallpaper="~/.local/share/backgrounds/wall6.png",
+        wallpaper_mode="fill"
     ),
 ]
 
-
-# Drag floating layouts.
+# Mouse configuration
 mouse = [
-    Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
-    Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
-    Click([mod], "Button2", lazy.window.bring_to_front()),
+    Drag([MOD], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
+    Drag([MOD], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
+    Click([MOD], "Button2", lazy.window.bring_to_front()),
 ]
 
+# Qtile behavior settings
 dgroups_key_binder = None
-dgroups_app_rules = []  # type: list
+dgroups_app_rules = []
 follow_mouse_focus = False
 bring_front_click = False
 floats_kept_above = True
 cursor_warp = False
-
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
-
-# If things like steam games want to auto-minimize themselves when losing
-# focus, should we respect this or not?
 auto_minimize = True
 
+# Wayland-specific settings
+wl_input_rules = None
+wl_xcursor_theme = None
+wl_xcursor_size = 24
+
+# Java compatibility
+wmname = "LG3D"
+
+# Uncomment to enable autostart script
 # @hook.subscribe.startup_once
 # def autostart():
 #     home = os.path.expanduser('~/.config/qtile/autostart.sh')
 #     subprocess.Popen([home])
-
-# When using the Wayland backend, this can be used to configure input devices.
-wl_input_rules = None
-
-# xcursor theme (string or None) and size (integer) for Wayland backend
-wl_xcursor_theme = None
-wl_xcursor_size = 24
-
-# XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
-# string besides java UI toolkits; you can see several discussions on the
-# mailing lists, GitHub issues, and other WM documentation that suggest setting
-# this string if your java app doesn't work correctly. We may as well just lie
-# and say that we're a working one by default.
-#
-# We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
-# java that happens to be on java's whitelist.
-wmname = "LG3D"
