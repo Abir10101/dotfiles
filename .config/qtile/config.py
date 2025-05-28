@@ -15,6 +15,8 @@ FONT_SIZE = 14
 TERMINAL = guess_terminal()
 # CLIPBOARD = "xfce4-popup-clipman"
 CLIPBOARD = "/home/abir101/.config/dmenu_scripts/cliphist.sh sel"
+AUDIO_OUTPUT = "/home/abir101/.config/dmenu_scripts/audioswitch.sh"
+POWERMENU = "/home/abir101/.config/dmenu_scripts/powermenu.sh"
 
 # Color scheme setup
 colors, backgroundColor, foregroundColor, workspaceColor, chordColor = colors.gruvbox()
@@ -75,6 +77,9 @@ keys = [
     Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +3%"), desc="Raise Volume by 3%"),
     Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -3%"), desc="Lower Volume by 3%"),
     Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle"), desc="Mute/Unmute Volume"),
+    Key([MOD], "s", lazy.spawn(AUDIO_OUTPUT), desc="Launch audio output switch menu"),
+
+    Key([MOD], "p", lazy.spawn(POWERMENU), desc="Launch power menu"),
 ]
 
 # Group configuration
