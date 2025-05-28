@@ -13,7 +13,8 @@ MOD = "mod4"
 FONT_FACE = "Cascadia Code Bold"
 FONT_SIZE = 14
 TERMINAL = guess_terminal()
-CLIPBOARD = "xfce4-popup-clipman"
+# CLIPBOARD = "xfce4-popup-clipman"
+CLIPBOARD = "/home/abir101/.config/dmenu_scripts/cliphist.sh sel"
 
 # Color scheme setup
 colors, backgroundColor, foregroundColor, workspaceColor, chordColor = colors.gruvbox()
@@ -69,7 +70,7 @@ keys = [
     # Application launchers
     Key([MOD], "d", lazy.spawn(mymenu), desc="Launch app launcher"),
     Key([MOD], "v", lazy.spawn(CLIPBOARD), desc="Launch clipboard manager"),
-    
+
     # Audio controls
     Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +3%"), desc="Raise Volume by 3%"),
     Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -3%"), desc="Lower Volume by 3%"),

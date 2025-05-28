@@ -4,3 +4,5 @@ xfce4/
 obs-studio/
 pulse/
 sm-player/
+**/trash
+**/.uuid
