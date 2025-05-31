@@ -47,16 +47,24 @@ keys = [
     Key([MOD, "shift"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
     Key([MOD, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
     Key([MOD, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
-    
+    Key([MOD, "shift"], "Return", lazy.layout.swap_main(), desc="Move window up"),
+
     # Window resizing
-    Key([MOD, "control"], "h", lazy.layout.grow_left(), lazy.layout.grow().when(layout=["monadtall"]), desc="Grow window to the left"),
-    Key([MOD, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
-    Key([MOD, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
-    Key([MOD, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
+    # Key([MOD, "control"], "h", lazy.layout.grow_left().when(layout=["columns"]), desc="Grow window to the left"),
+    # Key([MOD, "control"], "l", lazy.layout.grow_right().when(layout=["columns"]), desc="Grow window to the right"),
+    # Key([MOD, "control"], "j", lazy.layout.grow_down().when(layout=["columns"]), desc="Grow window down"),
+    # Key([MOD, "control"], "k", lazy.layout.grow_up().when(layout=["columns"]), desc="Grow window up"),
+
+    Key([MOD, "control"], "h", lazy.layout.grow().when(layout=["monadtall"]), desc="Grow window to the left"),
+    Key([MOD, "control"], "l", lazy.layout.shrink().when(layout=["monadtall"]), desc="Grow window to the right"),
+
+    # Key([MOD, "control"], "h", lazy.layout.increase_ratio().when(layout=["tile"]), desc="Grow window to the left"),
+    # Key([MOD, "control"], "l", lazy.layout.decrease_ratio().when(layout=["tile"]), desc="Grow window to the right"),
+
     Key([MOD], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     
     # Layout and window management
-    Key([MOD, "shift"], "Return", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack"),
+    # Key([MOD, "shift"], "Return", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack"),
     Key([MOD], "Return", lazy.spawn(TERMINAL), desc="Launch terminal"),
     Key([MOD], "w", lazy.window.kill(), desc="Kill focused window"),
     
@@ -150,7 +158,8 @@ floating_layout = layout.Floating(
 # Available layouts
 layouts = [
     layout.Max(**LAYOUT_THEME),
-    layout.MonadTall(**LAYOUT_THEME),
+    layout.MonadTall(new_client_position='top', **LAYOUT_THEME),
+    # layout.Tile(ratio=0.5, **LAYOUT_THEME),
     floating_layout,
 ]
 
