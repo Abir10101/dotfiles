@@ -303,9 +303,9 @@ screens = [
         margin=0,
         size=FONT_SIZE + 8,
         background=colors[0]
-        ),
-        wallpaper="~/.local/share/backgrounds/wall6.png",
-        wallpaper_mode="fill"
+        )
+        # wallpaper="~/.local/share/backgrounds/wall6.png",
+        # wallpaper_mode="fill"
     ),
 ]
 
