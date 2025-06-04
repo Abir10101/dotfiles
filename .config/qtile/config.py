@@ -6,7 +6,7 @@ from libqtile import bar, layout, qtile, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
-from qtile_extras import widget
+# from qtile_extras import widget
 
 # Configuration constants
 MOD = "mod4"

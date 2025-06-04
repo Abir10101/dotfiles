@@ -3,7 +3,7 @@
 # Load X resources
 # xrdb -merge ~/.Xresources
 
-nm-applet &
+# nm-applet &
 picom --config ~/.config/picom/picom.conf &
 xwallpaper --zoom ~/.local/share/backgrounds/wall6.png
 ~/.config/dmenu_scripts/cliphistd.sh &

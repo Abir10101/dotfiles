@@ -1,2 +1,6 @@
 [Added Associations]
 application/x-theme=helix-AM.desktop;
+video/x-matroska=smplayer-AM.desktop
+
+[Default Applications]
+video/x-matroska=smplayer-AM.desktop
