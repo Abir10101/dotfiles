@@ -5,7 +5,8 @@
 
 # nm-applet &
 picom --config ~/.config/picom/picom.conf &
-xwallpaper --zoom ~/.local/share/backgrounds/wall6.png
+# xwallpaper --zoom ~/.local/share/backgrounds/wall6.png
+~/.config/scripts/randomWall.sh &
 ~/.config/dmenu_scripts/cliphistd.sh &
 export XCURSOR_THEME=macOS
 export XCURSOR_SIZE=23
