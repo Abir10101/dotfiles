@@ -1,4 +1,4 @@
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on   = "Q"
 for  = "unix"
 run  = 'shell "$SHELL" --block'

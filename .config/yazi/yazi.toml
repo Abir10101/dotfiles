@@ -1,0 +1,9 @@
+[open]
+rules = [
+  { name = "*", use = "open" }
+]
+
+[opener]
+open = [
+    { run = 'xdg-open "$@"', desc = "Open", for = "unix" },
+]
