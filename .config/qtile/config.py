@@ -82,9 +82,9 @@ keys = [
     Key([MOD], "v", lazy.spawn(CLIPBOARD), desc="Launch clipboard manager"),
 
     # Audio controls
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +3%"), desc="Raise Volume by 3%"),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -3%"), desc="Lower Volume by 3%"),
-    Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle"), desc="Mute/Unmute Volume"),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("pamixer -i 3"), desc="Raise Volume by 3%"),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("pamixer -d 3"), desc="Lower Volume by 3%"),
+    Key([], "XF86AudioMute", lazy.spawn("pamixer -t"), desc="Mute/Unmute Volume"),
     Key([MOD], "s", lazy.spawn(AUDIO_OUTPUT), desc="Launch audio output switch menu"),
 
     Key([MOD], "p", lazy.spawn(POWERMENU), desc="Launch power menu"),

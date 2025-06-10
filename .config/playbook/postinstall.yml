@@ -1,0 +1,99 @@
+- hosts: localhost
+  tasks:
+    - name: Install required packages
+      become: yes
+      package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - qtile
+        - pavucontrol
+        - pulseaudio-utils
+        - btop
+        - fuse
+        - fuse-libs
+        - stow
+        - xsel
+        - xfce4-screenshooter
+        - podman
+        - podman-compose
+        - gstreamer1-plugin-openh264
+        - openvpn
+        - gcc
+        - git
+        - nmtui
+        - ddcutil
+        - ffmpeg-free
+        - slock
+        - bleachbit
+        - wget
+        - pamixer
+
+    - name: Remove unwanted packages
+      become: yes
+      package:
+        name: "{{ item }}"
+        state: absent
+      loop:
+        - amd-ucode-firmware
+        - geoclue2
+        - amd-gpu-firmware
+        - nm-connection-editor
+        - python3-devel
+        - python3-botocore
+        - python3-virtualenv
+        - pcmanfm
+        - python3-pip
+        - ImageMagick
+        - upower
+        - ModemManager
+        - libmbim
+        - plymouth
+        - smartmontools
+        - pcsc-lite
+        - nano
+        - fprintd
+        - hunspell-en-GB
+        - vim*
+        - abrt*
+        - lightdm
+        - lightdm-gtk-greeter
+
+    - name: Change screen brightness script
+      become: yes
+      command: ln -s ~/.local/bin/setbrightness.sh /usr/local/bin/setbrightness
+
+    - name: Download and install AM
+      become: yes
+      shell: |
+        wget https://raw.githubusercontent.com/ivan-hc/AM/main/INSTALL -O /tmp/AM-INSTALL &&
+        chmod a+x /tmp/AM-INSTALL &&
+        /tmp/AM-INSTALL &&
+        rm /tmp/AM-INSTALL
+      args:
+        creates: /usr/local/bin/am
+    - name: Install AM packages
+      become: yes
+      command: am -i "{{item}}"
+      loop:
+        - bruno
+        - helix
+        - librewolf
+        - localsend
+        - obs-studio
+        - smplayer
+        - yazi
+        - zen-browser
+
+    - name: Clone dotfiles repository
+      git:
+        repo: https://github.com/Abir10101/dotfiles.git
+        dest: "{{ ansible_env.HOME }}/dotfiles"
+        version: main
+        update: yes
+      become: false
+    - name: Stow dotfiles
+      shell: stow */
+      args:
+        chdir: "{{ ansible_env.HOME }}/dotfiles"
+      become: false
