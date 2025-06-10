@@ -2,9 +2,7 @@
   tasks:
     - name: Install required packages
       become: yes
-      package:
-        name: "{{ item }}"
-        state: present
+      command: dnf install -y "{{item}}"
       loop:
         - qtile
         - pavucontrol
@@ -28,12 +26,13 @@
         - bleachbit
         - wget
         - pamixer
-
+        - startx
+        - xorg-x11-server-Xorg
+        - xorg-x11-xinit
+        - dmenu
     - name: Remove unwanted packages
       become: yes
-      package:
-        name: "{{ item }}"
-        state: absent
+      command: dnf remove "{{item}}"
       loop:
         - amd-ucode-firmware
         - geoclue2
@@ -59,6 +58,11 @@
         - lightdm
         - lightdm-gtk-greeter
 
+    - name: Stow dotfiles
+      shell: stow --adopt .
+      args:
+        chdir: "{{ ansible_env.HOME }}/dotfiles"
+
     - name: Change screen brightness script
       become: yes
       command: ln -s ~/.local/bin/setbrightness.sh /usr/local/bin/setbrightness
@@ -73,7 +77,6 @@
       args:
         creates: /usr/local/bin/am
     - name: Install AM packages
-      become: yes
       command: am -i "{{item}}"
       loop:
         - bruno
@@ -84,16 +87,3 @@
         - smplayer
         - yazi
         - zen-browser
-
-    - name: Clone dotfiles repository
-      git:
-        repo: https://github.com/Abir10101/dotfiles.git
-        dest: "{{ ansible_env.HOME }}/dotfiles"
-        version: main
-        update: yes
-      become: false
-    - name: Stow dotfiles
-      shell: stow */
-      args:
-        chdir: "{{ ansible_env.HOME }}/dotfiles"
-      become: false
