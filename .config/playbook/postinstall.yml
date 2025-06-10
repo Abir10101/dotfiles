@@ -30,6 +30,8 @@
         - xorg-x11-server-Xorg
         - xorg-x11-xinit
         - dmenu
+        - sxiv
+
     - name: Remove unwanted packages
       become: yes
       command: dnf remove "{{item}}"
@@ -59,13 +61,11 @@
         - lightdm-gtk-greeter
 
     - name: Stow dotfiles
-      shell: stow --adopt .
+      shell: |
+        mkdir -p "{{ ansible_env.HOME }}/.librewolf"
+        stow --adopt .
       args:
         chdir: "{{ ansible_env.HOME }}/dotfiles"
-
-    - name: Change screen brightness script
-      become: yes
-      command: ln -s ~/.local/bin/setbrightness.sh /usr/local/bin/setbrightness
 
     - name: Download and install AM
       become: yes
@@ -87,3 +87,7 @@
         - smplayer
         - yazi
         - zen-browser
+
+    - name: Change screen brightness script
+      become: yes
+      command: ln -s {{ ansible_env.HOME }}/.local/bin/setbrightness.sh /usr/local/bin/setbrightness
