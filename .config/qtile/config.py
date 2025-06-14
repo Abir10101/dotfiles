@@ -82,9 +82,9 @@ keys = [
     Key([MOD], "v", lazy.spawn(CLIPBOARD), desc="Launch clipboard manager"),
 
     # Audio controls
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("pamixer -i 3"), desc="Raise Volume by 3%"),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("pamixer -d 3"), desc="Lower Volume by 3%"),
-    Key([], "XF86AudioMute", lazy.spawn("pamixer -t"), desc="Mute/Unmute Volume"),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%+"), desc="Raise Volume by 3%"),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-"), desc="Lower Volume by 3%"),
+    Key([], "XF86AudioMute", lazy.spawn("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), desc="Mute/Unmute Volume"),
     Key([MOD], "s", lazy.spawn(AUDIO_OUTPUT), desc="Launch audio output switch menu"),
 
     Key([MOD], "p", lazy.spawn(POWERMENU), desc="Launch power menu"),
@@ -261,8 +261,8 @@ vol_icon = widget.TextBox(
 
 vol = widget.Volume(
     fmt="{}",
-    mute_command="pamixer -t",
-    get_volume_command="pamixer --get-volume-human",
+    mute_command="wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    get_volume_command="""wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{ if ($3 == "[MUTED]") print "M"; else printf("%.0f%%\\n", $2 * 100) }'""",
     update_interval=0.3,
     fontsize=FONT_SIZE,
     font=FONT_FACE,
