@@ -7,11 +7,22 @@
 # }
 
 headphones () { \
-  wpctl set-default 57
+  SINK_NAME="Headphone Zone x ddHiFi DAC Digital Stereo"
+  SINK_ID=$(wpctl status | awk -v name="$SINK_NAME" -F '[.()]' '$0 ~ name {print $1}' | awk '{print $NF}')
+
+  if [ -n "$SINK_ID" ]; then
+      wpctl set-default "$SINK_ID"
+  fi
 }
 
 speakers () { \
-  wpctl set-default 45
+  SINK_NAME="Built-in Audio Analog Stereo"
+  SINK_ID=$(wpctl status | awk -v name="$SINK_NAME" -F '[.()]' '$0 ~ name {print $1}' | awk '{print $NF}')
+
+  if [ -n "$SINK_ID" ]; then
+      wpctl set-default "$SINK_ID"
+  fi
+  # wpctl set-default 56
 }
 
 choosespeakers() { \
