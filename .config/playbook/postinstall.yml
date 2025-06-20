@@ -89,6 +89,15 @@
       become: yes
       command: ln -s ~/.config/fontconfig/conf.d/52-my-default-fonts.conf /etc/fonts/conf.d/52-my-default-fonts.conf
 
+    - name: Run zzz, reboot, poweroff without root password
+      become: yes
+      tags: mytask
+      ansible.builtin.lineinfile:
+        path: /etc/sudoers
+        line: '{{ lookup("ansible.builtin.env", "USER") }} ALL=(ALL) NOPASSWD: /usr/bin/zzz, /usr/bin/reboot, /usr/bin/poweroff'
+        state: present
+        validate: '/usr/sbin/visudo -cf %s'
+
     - name: Remove unwanted packages
       become: yes
       command: xbps-remove -Ry "{{item}}"
