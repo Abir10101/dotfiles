@@ -85,6 +85,10 @@
        ln -s /etc/sv/dbus /var/service/ &&
        sv start dbus
 
+    - name: Configure default font
+      become: yes
+      command: ln -s ~/.config/fontconfig/conf.d/52-my-default-fonts.conf /etc/fonts/conf.d/52-my-default-fonts.conf
+
     - name: Remove unwanted packages
       become: yes
       command: xbps-remove -Ry "{{item}}"
