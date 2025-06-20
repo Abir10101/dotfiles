@@ -19,7 +19,7 @@
         - git
         - NetworkManager
         - ddcutil
-        - ffmpeg
+        # - ffmpeg
         - slock
         - bleachbit
         - wget
@@ -31,12 +31,12 @@
         - dmenu
         - sxiv
         - unzip
-        - xdg-util
+        - xdg-utils
         - noto-fonts-ttf
         - picom
         - python3-psutil
         - xrandr
-        - pipeware
+        - pipewire
         - xwallpaper
         - curl
         - dbus
@@ -87,7 +87,9 @@
 
     - name: Configure default font
       become: yes
-      command: ln -s ~/.config/fontconfig/conf.d/52-my-default-fonts.conf /etc/fonts/conf.d/52-my-default-fonts.conf
+      shell: |
+        ln -s ~/.config/fontconfig/conf.d/52-my-default-fonts.conf /etc/fonts/conf.d/52-my-default-fonts.conf &&
+        fc-cache -f
 
     - name: Run zzz, reboot, poweroff without root password
       become: yes
