@@ -2,4 +2,4 @@ eval "$(starship init bash)"
 export PF_INFO="ascii title os kernel pkgs memory wm shell editor palette"
 export EDITOR="helix"
 export PF_ASCII="q"
-set -o vi
+export TERM=xterm-256color

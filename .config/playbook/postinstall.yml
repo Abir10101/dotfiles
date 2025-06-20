@@ -2,67 +2,44 @@
   tasks:
     - name: Install required packages
       become: yes
-      command: dnf install -y "{{item}}"
+      command: xbps-install "{{item}}"
       loop:
         - qtile
         - pavucontrol
         - btop
         - fuse
-        - fuse-libs
         - stow
         - xsel
         - xfce4-screenshooter
         - podman
         - podman-compose
-        - gstreamer1-plugin-openh264
+        - gst-plugins-bad1
         - openvpn
         - gcc
         - git
-        - nmtui
+        - NetworkManager
         - ddcutil
-        - ffmpeg-free
+        - ffmpeg
         - slock
         - bleachbit
         - wget
-        - pamixer
-        - startx
-        - xorg-x11-server-Xorg
-        - xorg-x11-xinit
+        # - pamixer
+        - xinit
+        - xorg-minimal
+        - xorg-server
         - xcb-util-image
         - dmenu
         - sxiv
         - unzip
-        - xdg-open
-
-    - name: Remove unwanted packages
-      become: yes
-      command: dnf remove -y "{{item}}"
-      loop:
-        - amd-ucode-firmware
-        - geoclue2
-        - amd-gpu-firmware
-        - nm-connection-editor
-        - python3-devel
-        - python3-botocore
-        - python3-virtualenv
-        - pcmanfm
-        - python3-pip
-        - ImageMagick
-        - upower
-        - ModemManager
-        - libmbim
-        - plymouth
-        - smartmontools
-        - pcsc-lite
-        - nano
-        - fprintd
-        - hunspell-en-GB
-        - vim*
-        - abrt*
-        - lightdm
-        - lightdm-gtk-greeter
-        - cronie
-        - gssproxy
+        - xdg-util
+        - noto-fonts-ttf
+        - picom
+        - python3-psutil
+        - xrandr
+        - pipeware
+        - xwallpaper
+        - curl
+        - dbus
 
     - name: Stow dotfiles
       shell: |
@@ -95,3 +72,36 @@
     - name: Change screen brightness script
       become: yes
       command: ln -s {{ ansible_env.HOME }}/.local/bin/setbrightness.sh /usr/local/bin/setbrightness
+
+    - name: Start NetworkManager
+      become: yes
+      shell: |
+       ln -s /etc/sv/NetworkManager /var/service/ &&
+       sv start NetworkManager
+
+    - name: Remove unwanted packages
+      become: yes
+      command: xbps-remove -Ry "{{item}}"
+      loop:
+        - linux-firmware-amd
+        - geoclue2
+        - python3-devel
+        - python3-botocore
+        - python3-virtualenv
+        - pcmanfm
+        - python3-pip
+        - ImageMagick
+        - upower
+        - ModemManager
+        - libmbim
+        - plymouth
+        - smartmontools
+        - pcsc-lite
+        - nano
+        - fprintd
+        - hunspell-en-GB
+        - abrt*
+        - lightdm
+        - lightdm-gtk-greeter
+        - cronie
+        - gssproxy
