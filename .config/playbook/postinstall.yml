@@ -19,11 +19,9 @@
         - git
         - NetworkManager
         - ddcutil
-        # - ffmpeg
         - slock
         - bleachbit
         - wget
-        # - pamixer
         - xinit
         - xorg-minimal
         - xorg-server
@@ -39,6 +37,9 @@
         - pipewire
         - xwallpaper
         - curl
+        - mesa
+        - mesa-dri
+        - linux-firmware-intel
         - dbus
 
     - name: Stow dotfiles
@@ -73,17 +74,25 @@
       become: yes
       command: ln -s {{ ansible_env.HOME }}/.local/bin/setbrightness.sh /usr/local/bin/setbrightness
 
-    - name: Start NetworkManager
-      become: yes
-      shell: |
-       ln -s /etc/sv/NetworkManager /var/service/ &&
-       sv start NetworkManager
-
     - name: Start dbus
       become: yes
-      shell: |
-       ln -s /etc/sv/dbus /var/service/ &&
-       sv start dbus
+      ansible.builtin.file:
+        src: /etc/sv/dbus
+        dest: /var/service/dbus
+        state: link
+      service:
+        name: dbus
+        state: started
+
+    - name: Start NetworkManager
+      become: yes
+      ansible.builtin.file:
+        src: /etc/sv/NetworkManager
+        dest: /var/service/NetworkManager
+        state: link
+      service:
+        name: NetworkManager
+        state: started
 
     - name: Configure default font
       become: yes
@@ -93,18 +102,24 @@
 
     - name: Run zzz, reboot, poweroff without root password
       become: yes
-      tags: mytask
       ansible.builtin.lineinfile:
         path: /etc/sudoers
         line: '{{ lookup("ansible.builtin.env", "USER") }} ALL=(ALL) NOPASSWD: /usr/bin/zzz, /usr/bin/reboot, /usr/bin/poweroff'
         state: present
         validate: '/usr/sbin/visudo -cf %s'
 
+    - name: Setup for removing unused firmware packages
+      become: yes
+      shell: |
+        echo "ignorepkg=linux-firmware-amd" > /etc/xbps.d/10-ignore.conf &&
+        echo "ignorepkg=linux-firmware-nvidia" > /etc/xbps.d/10-ignore.conf
+
     - name: Remove unwanted packages
       become: yes
       command: xbps-remove -Ry "{{item}}"
       loop:
         - linux-firmware-amd
+        - linux-firmware-nvidia
         - geoclue2
         - python3-devel
         - python3-botocore
