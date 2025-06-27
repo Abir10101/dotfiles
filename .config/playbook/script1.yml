@@ -30,7 +30,7 @@
         - sxiv
         - unzip
         - xdg-utils
-        - noto-fonts-ttf
+        - cantarell-fonts
         - picom
         - python3-psutil
         - xrandr
@@ -40,6 +40,7 @@
         - mesa
         - mesa-dri
         - linux-firmware-intel
+        - ufw
         - dbus
 
     - name: Stow dotfiles

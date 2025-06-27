@@ -24,6 +24,16 @@
         name: NetworkManager
         state: started
 
+    - name: Start firewall
+      become: yes
+      ansible.builtin.file:
+        src: /etc/sv/ufw
+        dest: /var/service/ufw
+        state: link
+      service:
+        name: ufw
+        state: started
+
     - name: Configure default font
       become: yes
       shell: |
