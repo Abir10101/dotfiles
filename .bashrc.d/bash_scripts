@@ -1,5 +1,5 @@
 eval "$(starship init bash)"
 export PF_INFO="ascii title os kernel pkgs memory wm shell editor palette"
 export EDITOR="helix"
-export PF_ASCII="q"
+export PF_ASCII="void"
 export TERM=xterm-256color
