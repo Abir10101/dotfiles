@@ -41,6 +41,8 @@
         - mesa-dri
         - linux-firmware-intel
         - ufw
+        - overpass-otf
+        - fzf
         - dbus
 
     - name: Stow dotfiles

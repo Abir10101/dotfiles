@@ -1,4 +1,5 @@
 eval "$(starship init bash)"
+eval "$(fzf --bash)"
 export PF_INFO="ascii title os kernel pkgs memory wm shell editor palette"
 export EDITOR="helix"
 export PF_ASCII="void"
