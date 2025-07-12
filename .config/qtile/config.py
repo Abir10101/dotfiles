@@ -27,7 +27,7 @@ def build_menu_command():
     """Build dmenu command with styling options."""
     return (
         f"dmenu_run"
-        f" -fn 'Cascadia Code:size=11:style=SemiBold'"
+        f" -fn 'Cascadia Code:size=10.8:style=SemiBold'"
         f" -nb '{backgroundColor}'"
         f" -nf '{foregroundColor}'"
         f" -sb '{accentColor[1]}'"

@@ -27,7 +27,7 @@ space = "·"
 nbsp = "⍽"
 tab = "→"
 newline = "⏎"
-tabpad = "→"
+tabpad = "."
 
 [editor.cursor-shape]
 insert = "bar"
