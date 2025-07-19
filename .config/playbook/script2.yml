@@ -57,3 +57,15 @@
       shell: |
         echo "ignorepkg=linux-firmware-amd" > /etc/xbps.d/10-ignore.conf &&
         echo "ignorepkg=linux-firmware-nvidia" > /etc/xbps.d/10-ignore.conf
+
+    - name: Ensure Cloudflare and Google DNS are set with resolvconf
+      become: yes
+      blockinfile:
+        path: /etc/resolvconf.conf
+        marker: "# {mark} ANSIBLE MANAGED BLOCK: DNS config"
+        block: |
+          prepend_nameservers="1.1.1.1 1.0.0.1 8.8.8.8 8.8.4.4"
+
+    - name: Update resolvconf
+      become: yes
+      command: resolvconf -u
