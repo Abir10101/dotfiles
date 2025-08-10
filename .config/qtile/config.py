@@ -10,7 +10,8 @@ from libqtile.utils import guess_terminal
 
 # Configuration constants
 MOD = "mod4"
-FONT_FACE = "Cascadia Code SemiBold"
+# FONT_FACE = "Cascadia Code SemiBold"
+FONT_FACE = "Overpass Bold"
 FONT_SIZE = 14
 TERMINAL = guess_terminal()
 # CLIPBOARD = "xfce4-popup-clipman"
@@ -27,7 +28,7 @@ def build_menu_command():
     """Build dmenu command with styling options."""
     return (
         f"dmenu_run"
-        f" -fn 'Cascadia Code:size=10.8:style=SemiBold'"
+        f" -fn 'Overpass:size=12.5:style=Bold'"
         f" -nb '{backgroundColor}'"
         f" -nf '{foregroundColor}'"
         f" -sb '{accentColor[1]}'"
