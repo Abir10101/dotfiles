@@ -1,8 +1,7 @@
 ---
 - name: Install system packages
-  host: localhost
+  hosts: localhost
   gather_facts: false
-
   tasks:
     - name: Download AM installer
       ansible.builtin.get_url:
@@ -11,24 +10,20 @@
         mode: '0755'
       args:
         creates: /usr/local/bin/am
-
     - name: Install AM
       ansible.builtin.command:
         cmd: /tmp/AM-INSTALL
       args:
         creates: /usr/local/bin/am
       become: yes
-
     - name: Remove AM installer
       ansible.builtin.file:
         path: /tmp/AM-INSTALL
         state: absent
-
     - name: Check if AM binary exists
       ansible.builtin.stat:
         path: /usr/local/bin/am
       register: am_bin
-
     - name: Install AM packages
       ansible.builtin.command:
         cmd: am -i "{{item}}"
