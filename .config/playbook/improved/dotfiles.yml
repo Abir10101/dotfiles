@@ -1,15 +1,13 @@
 ---
 - name: Install system packages
-  host: localhost
+  hosts: localhost
   gather_facts: false
-
   tasks:
     - name: Create .librewolf directory
       ansible.builtin.file:
         path: "{{ librewolf_dir }}"
         state: directory
         mode: '0700'
-
     - name: Stow dotfiles
       ansible.builtin.command:
         chdir: "{{ dotfiles_dir }}"
