@@ -4,10 +4,11 @@
   gather_facts: false
   tasks:
     - name: Download AM installer
-      ansible.builtin.shell: curl -sL https://raw.githubusercontent.com/ivan-hc/AM/main/INSTALL -o /tmp/AM-INSTALL
-      args:
-        creates: /usr/local/bin/am
-      mode: '0755'
+      ansible.builtin.get_url:
+        url: https://raw.githubusercontent.com/ivan-hc/AM/main/INSTALL
+        dest: /tmp/AM-INSTALL
+        mode: '0755'
+      when: not lookup('ansible.builtin.fileglob', '/usr/local/bin/am', errors='ignore')
     - name: Install AM
       ansible.builtin.command:
         cmd: /tmp/AM-INSTALL
