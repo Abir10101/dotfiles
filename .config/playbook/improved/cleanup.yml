@@ -7,8 +7,6 @@
       become: yes
       ansible.builtin.package:
         name:
-          - linux-firmware-amd
-          - linux-firmware-nvidia
           - geoclue2
           - python3-devel
           - python3-botocore
