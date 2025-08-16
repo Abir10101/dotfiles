@@ -1,0 +1,94 @@
+---
+- name: Configure System
+  hosts: localhost
+  gather_facts: false
+  vars:
+    home_dir: "{{ lookup('env', 'HOME') }}"
+  tasks:
+    - name: Screen brightness script
+      become: yes
+      ansible-builtin.file:
+        src: "{{home_dir}}/.local/bin/setbrightness"
+        dest: "/usr/local/setbrightness"
+        state: link
+
+    - name: Start dbus
+      become: yes
+      ansible.builtin.file:
+        src: /etc/sv/dbus
+        dest: /var/service/dbus
+        state: link
+      service:
+        name: dbus
+        state: started
+
+    - name: Start NetworkManager
+      become: yes
+      ansible.builtin.file:
+        src: /etc/sv/NetworkManager
+        dest: /var/service/NetworkManager
+        state: link
+      service:
+        name: NetworkManager
+        state: started
+
+    - name: Start firewall
+      become: yes
+      ansible.builtin.file:
+        src: /etc/sv/ufw
+        dest: /var/service/ufw
+        state: link
+      service:
+        name: ufw
+        state: started
+
+    - name: Symlink default font file
+      become: yes
+      ansible.builtin.file:
+        src: "{{home_dir}}/.config/fontconfig/conf.d/52-my-default-fonts.conf"
+        dest: "/etc/fonts/conf.d/52-my-default-fonts.conf"
+        state: link
+      register: default_font_link
+
+    - name: Update font cache
+      when: default_font_link.changed
+      command: "fc-cache -f"
+
+    - name: Run zzz, reboot, poweroff without root password
+      become: yes
+      ansible.builtin.lineinfile:
+        path: /etc/sudoers
+        line: '{{ lookup("ansible.builtin.env", "USER") }} ALL=(ALL) NOPASSWD: /usr/bin/zzz, /usr/bin/reboot, /usr/bin/poweroff'
+        state: present
+        validate: '/usr/sbin/visudo -cf %s'
+
+    - name: Ensure Cloudflare and Google DNS are set with resolvconf
+      become: yes
+      ansible.builtin.blockinfile:
+        path: /etc/resolvconf.conf
+        marker: "# {mark} ANSIBLE MANAGED BLOCK: DNS config"
+        block: |
+          prepend_nameservers="1.1.1.1 1.0.0.1 8.8.8.8 8.8.4.4"
+      register: dns_config
+    
+    - name: Update resolvconf
+      become: yes
+      command: "resolvconf -u"
+      when: dns_config.changed
+
+    - name: Configure root user shell to bash
+      become: yes
+      ansible.builtin.user:
+        name: root
+        shell: /bin/bash
+
+    - name: Setup for removing unused firmware packages
+      become: yes
+      ansible.builtin.blockinfile:
+        path: /etc/xbps.d/10-ignore.conf
+        marker: "# {mark} ANSIBLE MANAGED BLOCK: IGNORE PACKAGE"
+        block: |
+          ignorepkg=linux-firmware-amd
+          ignorepkg=linux-firmware-nvidia
+      create: yes
+      mode: "0644"
