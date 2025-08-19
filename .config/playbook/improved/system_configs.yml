@@ -8,7 +8,7 @@
     - name: Screen brightness script
       become: yes
       ansible.builtin.file:
-        src: "{{home_dir}}/.local/bin/setbrightness"
+        src: "{{home_dir}}/.local/bin/setbrightness.sh"
         dest: "/usr/local/setbrightness"
         state: link
     
