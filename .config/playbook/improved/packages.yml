@@ -47,4 +47,5 @@
           - overpass-otf
           - fzf
           - dbus
+          - dumb_runtime_dir
         state: present

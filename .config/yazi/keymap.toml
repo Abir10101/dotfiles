@@ -1,4 +1,5 @@
 [mgr]
 prepend_keymap = [
     { on = "Q", run = 'shell "$SHELL" --block', desc = "Open $SHELL here" },
+    { on = "M", run = 'plugin mount', desc = "Open mount panel" },
 ]
