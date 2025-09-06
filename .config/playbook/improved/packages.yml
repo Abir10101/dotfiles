@@ -48,4 +48,8 @@
           - fzf
           - dbus
           - dumb_runtime_dir
+          - starship
+          - pfetch
+          - uv
+          - clipnotify
         state: present
