@@ -129,7 +129,7 @@ groups.append(
 
 # Layout themes and configurations
 LAYOUT_THEME = {
-    "margin": 0,
+    "margin": 6,
     "border_width": 5,
     "border_focus": accentColor,
     "border_normal": backgroundColor
