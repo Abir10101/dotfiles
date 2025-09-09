@@ -1,0 +1,60 @@
+---
+- name: Install gcloud cli
+  hosts: localhost
+  gather_facts: false
+  become: false
+  vars:
+    gcloud_url: "https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64
+    download_dir: "/tmp"
+    install_dir: "{{ lookup('env', 'HOME') }}/.local/bin"
+
+  tasks:
+    - name: Check install directory exists
+      ansible.builtin.file:
+        path: "{{ install_dir }}"
+        state: "directory"
+        mode: "0755"
+      tags:
+        - setup
+
+    - name: Download gcloud archive
+      ansible.builtin.get_url:
+        url: "{{ gcloud_url }}"
+        dest: "{{ download_dir }}/gcloud.tar.gz"
+        mode: "0644"
+      tags:
+        - download
+
+    - name: Extract gcloud archive
+      ansible.builtin.unarchive:
+        src: "{{ download_dir }}/gcloud.tar.gz"
+        dest: "{{ download_dir }}"
+        remote_src: true
+      tags:
+        - extract
+
+    - name: Move gcloud folder to install directory
+      ansible.builtin.copy:
+        src: "{{ download_dir }}/google-cloud-sdk/"
+        dest: "{{ install_dir }}/gcloud"
+        mode: "0755"
+        remote_src: true
+      tags:
+        - install
+
+    - name: Cleanup downloaded files
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - "{{ download_dir }}/gcloud.tar.gz"
+        - "{{ download_dir }}/google-cloud-sdk"
+      tags:
+        - cleanup
+
+    - name: Display completion message
+      ansible.builtin.debug:
+        msg: "Move to {{ install_dir }}/gcloud and run the install.sh script to complete installation."
+      tags:
+        - always
+
