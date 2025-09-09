@@ -13,3 +13,4 @@ bruno/
 **/.uuid
 .local/bin/clangd
 .local/bin/gcloud
+.local/bin/kops
