@@ -52,4 +52,5 @@
           - pfetch
           - uv
           - clipnotify
+          - trash-cli
         state: present
