@@ -21,7 +21,7 @@ POWERMENU = "/home/abir101/.config/dmenu_scripts/powermenu.sh"
 
 # Color scheme setup
 colors, backgroundColor, foregroundColor, workspaceColor, chordColor = colors.gruvbox()
-accentColor = colors[9]
+accentColor = colors[6]
 
 # Menu configuration
 def build_menu_command():

@@ -131,21 +131,19 @@ def gruvbox():
 			   ["#928374", "#928374"],  #light grey [1]
 			   ["#ebdbb2", "#ebddb2"],  #foreground (white) [2]
 			   ["#458588", "#458588"],  #blue) [3]
-			   # ["#FF5733", "#FF5733"],  #red) [3]
 			   ["#83a598", "#83a598"],  #light blue [4]
 			   ["#b8bb26", "#b8bb26"],  #green [5]
-			   ["#d79921", "#d79921"],  #orange [6]
+			   ["#cc521d", "#cc521d"],  #orange [6]
 			   ["#d3869b", "#d3869b"],  #pink [7]
 			   ["#b16286", "#b16286"],  #purple [8]
 			   ['#cc241d', '#cc241d'],  #red [9]
-			   # ['#FF5733', '#FF5733'],  #red [9]
 			   ["#fabd2f", "#fabd2f"],  #yellow [10]
 			   ["#3c3836", "#3c3836"],  #gray [10]
 			   ["#d65d0e", "#d65d0e"]]  #yellow [11]
 			   
 	backgroundColor = "#282828"
 	foregroundColor = "#ebddb2"
-	workspaceColor = "#b8bb26"
+	workspaceColor = "#B2C0EB"
 	foregroundColorTwo = "#928375"
 	return colors, backgroundColor, foregroundColor, workspaceColor, foregroundColorTwo
 
@@ -162,7 +160,7 @@ def gruvbox_light():
 			   ["#8f3f71", "#8f3f71"],  #purple [8]
 			   ['#cc241d', '#cc241d'],  #red [9]
 			   ["#d79921", "#d79921"],  #yellow [10]
-			   ["#689d6a", "#689d6a"]]  #yellow [11]
+			   ["#689d6a", "#689d6a"]]  #green [11]
 			   
 	backgroundColor = "#fbf1c7"
 	foregroundColor = "#282828"
