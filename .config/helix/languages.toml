@@ -1,0 +1,14 @@
+[[language]]
+name = "python"
+indent = { tab-width = 4, unit = "\t" }
+auto-pairs = false
+
+[[language]]
+name = "php"
+indent = { tab-width = 4, unit = "\t" }
+auto-pairs = false
+
+[[language]]
+name = "sql"
+indent = { tab-width = 4, unit = "\t" }
+auto-pairs = false
