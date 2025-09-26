@@ -1,0 +1,9 @@
+[[keyboard.bindings]]
+key = "Return"
+mods = "Control"
+action = "SpawnNewInstance"
+
+[[keyboard.bindings]]
+key = "V"
+mods = "Control"
+action = "ToggleViMode"
