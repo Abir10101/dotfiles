@@ -1,0 +1,42 @@
+---
+- name: Install system packages
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Download AM installer
+      ansible.builtin.get_url:
+        url: https://raw.githubusercontent.com/ivan-hc/AM/main/INSTALL
+        dest: /tmp/AM-INSTALL
+        mode: '0755'
+      when: not lookup('ansible.builtin.fileglob', '/usr/local/bin/am', errors='ignore')
+
+    - name: Install AM
+      ansible.builtin.command:
+        cmd: /tmp/AM-INSTALL
+      args:
+        creates: /usr/local/bin/am
+      become: yes
+
+    - name: Remove AM installer
+      ansible.builtin.file:
+        path: /tmp/AM-INSTALL
+        state: absent
+
+    - name: Check if AM binary exists
+      ansible.builtin.stat:
+        path: /usr/local/bin/am
+      register: am_bin
+
+    - name: Install AM packages
+      ansible.builtin.command:
+        cmd: am -i "{{item}}"
+      loop:
+        - bruno
+        - helix
+        - librewolf
+        - localsend
+        - obs-studio
+        - smplayer
+        - yazi
+        - zen-browser
+      when: am_bin.stat.exists

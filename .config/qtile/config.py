@@ -10,7 +10,8 @@ from libqtile.utils import guess_terminal
 
 # Configuration constants
 MOD = "mod4"
-FONT_FACE = "Cascadia Code Bold"
+# FONT_FACE = "Cascadia Code SemiBold"
+FONT_FACE = "Overpass Bold"
 FONT_SIZE = 14
 TERMINAL = guess_terminal()
 # CLIPBOARD = "xfce4-popup-clipman"
@@ -20,14 +21,14 @@ POWERMENU = "/home/abir101/.config/dmenu_scripts/powermenu.sh"
 
 # Color scheme setup
 colors, backgroundColor, foregroundColor, workspaceColor, chordColor = colors.gruvbox()
-accentColor = colors[9]
+accentColor = colors[6]
 
 # Menu configuration
 def build_menu_command():
     """Build dmenu command with styling options."""
     return (
         f"dmenu_run"
-        f" -fn 'Cascadia Code:size=12:style=Bold'"
+        f" -fn 'Overpass:size=12.5:style=Bold'"
         f" -nb '{backgroundColor}'"
         f" -nf '{foregroundColor}'"
         f" -sb '{accentColor[1]}'"
@@ -128,7 +129,7 @@ groups.append(
 
 # Layout themes and configurations
 LAYOUT_THEME = {
-    "margin": 0,
+    "margin": 6,
     "border_width": 5,
     "border_focus": accentColor,
     "border_normal": backgroundColor
@@ -194,7 +195,7 @@ open_windows = widget.TaskList(
     font=FONT_FACE,
     icon_size=0,
     margin=0,
-    padding_y=1,
+    padding_y=3,
     rounded=False,
     spacing=0,
     title_width_method='uniform',
@@ -301,7 +302,7 @@ screens = [
             clock,
         ],
         margin=0,
-        size=FONT_SIZE + 8,
+        size=FONT_SIZE + 6,
         background=colors[0]
         )
         # wallpaper="~/.local/share/backgrounds/wall6.png",

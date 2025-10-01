@@ -1,5 +1,5 @@
-[[mgr.prepend_keymap]]
-on   = "Q"
-for  = "unix"
-run  = 'shell "$SHELL" --block'
-desc = "Open $SHELL here"
+[mgr]
+prepend_keymap = [
+    { on = "Q", run = 'shell "$SHELL" --block', desc = "Open $SHELL here" },
+    { on = "M", run = 'plugin mount', desc = "Open mount panel" },
+]

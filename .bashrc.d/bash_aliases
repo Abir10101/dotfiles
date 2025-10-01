@@ -1,6 +1,6 @@
 alias hx='helix'
 alias yz='yazi'
 alias ls='ls -alhF --color=auto'
-alias rm='trash put'
+alias rm='trash-put'
 alias open='xdg-open'
 alias fb='fabric'

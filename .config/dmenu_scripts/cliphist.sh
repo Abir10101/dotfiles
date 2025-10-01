@@ -14,10 +14,25 @@ output() {
 }
 
 write() {
-  [ -f "$histfile" ] || touch "$histfile"
-  [ -z "$clip" ] && exit 0
-  multiline=$(echo "$clip" | sed ':a;N;$!ba;s/\n/'"$placeholder"'/g')
-  grep -Fxq "$multiline" "$histfile" || echo "$multiline" >> "$histfile"
+  # [ -f "$histfile" ] || touch "$histfile"
+  # [ -z "$clip" ] && exit 0
+  # multiline=$(echo "$clip" | sed ':a;N;$!ba;s/\n/'"$placeholder"'/g')
+  # tail -n 5 "$histfile" | grep -Fxq "$multiline" || echo "$multiline" >> "$histfile"
+
+  # Exit early if $clip is empty
+  [[ -z "$clip" ]] && exit 0
+
+  # Ensure $histfile exists (only if it doesn't)
+  [[ ! -f "$histfile" ]] && touch "$histfile"
+
+  # Convert multiline clip to single line with placeholder
+  multiline="${clip//$'\n'/$placeholder}"
+
+  # Use awk for more efficient processing - removes matching lines and appends new one
+  awk -v line="$multiline" '
+      $0 != line { print }
+      END { print line }
+  ' "$histfile" > "${histfile}.tmp" && mv "${histfile}.tmp" "$histfile"
 }
 
 sel() {

@@ -1,0 +1,58 @@
+---
+- name: Install system packages
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Install required packages
+      become: yes
+      ansible.builtin.package:
+        name:
+          - qtile
+          - pavucontrol
+          - btop
+          - fuse
+          - stow
+          - xsel
+          - xfce4-screenshooter
+          - podman
+          - podman-compose
+          - gst-plugins-bad1
+          - openvpn
+          - gcc
+          - git
+          - NetworkManager
+          - ddcutil
+          - slock
+          - bleachbit
+          - wget
+          - xinit
+          - xorg-minimal
+          - xorg-server
+          - xcb-util-image
+          - dmenu
+          - sxiv
+          - unzip
+          - xdg-utils
+          - cantarell-fonts
+          - picom
+          - python3-psutil
+          - xrandr
+          - pipewire
+          - xwallpaper
+          - curl
+          - mesa
+          - mesa-dri
+          - linux-firmware-intel
+          - ufw
+          - overpass-otf
+          - fzf
+          - dbus
+          - dumb_runtime_dir
+          - starship
+          - pfetch
+          - uv
+          - clipnotify
+          - trash-cli
+          - alacritty
+          - rbw
+        state: present

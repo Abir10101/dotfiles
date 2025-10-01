@@ -1,0 +1,31 @@
+---
+- name: Install system packages
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Remove packages
+      become: yes
+      ansible.builtin.package:
+        name:
+          - geoclue2
+          - python3-devel
+          - python3-botocore
+          - python3-virtualenv
+          - pcmanfm
+          - python3-pip
+          - ImageMagick
+          - upower
+          - ModemManager
+          - libmbim
+          - plymouth
+          - smartmontools
+          - pcsc-lite
+          - nano
+          - fprintd
+          - hunspell-en-GB
+          - abrt*
+          - lightdm
+          - lightdm-gtk-greeter
+          - cronie
+          - gssproxy
+        state: absent

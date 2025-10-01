@@ -73,6 +73,7 @@ symbol = "fossil "
 
 [gcloud]
 symbol = "gcp "
+disabled = true
 
 [git_branch]
 symbol = "git "
