@@ -1,6 +1,26 @@
 [Added Associations]
 application/x-theme=helix-AM.desktop;
 video/x-matroska=smplayer-AM.desktop
+x-scheme-handler/http=userapp-Zen-4VB2C3.desktop;
+x-scheme-handler/https=userapp-Zen-4VB2C3.desktop;
+x-scheme-handler/chrome=userapp-Zen-4VB2C3.desktop;
+text/html=userapp-Zen-4VB2C3.desktop;
+application/x-extension-htm=userapp-Zen-4VB2C3.desktop;
+application/x-extension-html=userapp-Zen-4VB2C3.desktop;
+application/x-extension-shtml=userapp-Zen-4VB2C3.desktop;
+application/xhtml+xml=userapp-Zen-4VB2C3.desktop;
+application/x-extension-xhtml=userapp-Zen-4VB2C3.desktop;
+application/x-extension-xht=userapp-Zen-4VB2C3.desktop;
 
 [Default Applications]
 video/x-matroska=smplayer-AM.desktop
+x-scheme-handler/http=userapp-Zen-4VB2C3.desktop
+x-scheme-handler/https=userapp-Zen-4VB2C3.desktop
+x-scheme-handler/chrome=userapp-Zen-4VB2C3.desktop
+text/html=userapp-Zen-4VB2C3.desktop
+application/x-extension-htm=userapp-Zen-4VB2C3.desktop
+application/x-extension-html=userapp-Zen-4VB2C3.desktop
+application/x-extension-shtml=userapp-Zen-4VB2C3.desktop
+application/xhtml+xml=userapp-Zen-4VB2C3.desktop
+application/x-extension-xhtml=userapp-Zen-4VB2C3.desktop
+application/x-extension-xht=userapp-Zen-4VB2C3.desktop
