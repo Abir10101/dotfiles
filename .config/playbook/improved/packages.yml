@@ -54,4 +54,5 @@
           - clipnotify
           - trash-cli
           - alacritty
+          - rbw
         state: present
