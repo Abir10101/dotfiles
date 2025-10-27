@@ -5,7 +5,6 @@ import colors
 from libqtile import bar, layout, qtile, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown
 from libqtile.lazy import lazy
-# from libqtile.utils import guess_terminal
 
 # Configuration constants
 MOD = "mod4"
@@ -317,15 +316,12 @@ layout_name = widget.CurrentLayout(
     background=colors[0]
 )
 
-# tray = widget.Systray(background=colors[0])
-
 # Screen configuration
 screens = [
     Screen(
         top=bar.Bar([
             groupbox,
             open_windows,
-            # tray,
             separator,
             layout_name,
             separator,
@@ -343,9 +339,9 @@ screens = [
         margin=0,
         size=FONT_SIZE + 6,
         background=colors[0]
-        )
-        # wallpaper=wallpaper,
-        # wallpaper_mode="fill"
+        ),
+        wallpaper="/home/abir101/.local/share/backgrounds/wall11.png",
+        wallpaper_mode="fill"
     ),
 ]
 
@@ -369,9 +365,8 @@ reconfigure_screens = True
 auto_minimize = True
 
 # Wayland-specific settings
-# wl_input_rules = None
-wl_xcursor_theme = "macOS"
-wl_xcursor_size = 23
+wl_xcursor_theme = os.environ.get("XCURSOR_THEME", "Adwaita")
+wl_xcursor_size = int(os.environ.get("XCURSOR_SIZE", 20))
 
 # Java compatibility
 wmname = "QTILE"
