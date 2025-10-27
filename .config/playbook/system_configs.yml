@@ -54,7 +54,7 @@
     - name: Remove D-Bus portal desktop service file
       become: yes
       ansible.builtin.file:
-        path: {{ item }}
+        path: "{{ item }}"
         state: absent
       loop:
         - /usr/share/dbus-1/services/org.freedesktop.portal.Desktop.service
@@ -67,6 +67,19 @@
         dest: "/etc/fonts/conf.d/52-my-default-fonts.conf"
         state: link
       register: default_font_link
+
+    - name: Start seatd service link
+      become: yes
+      ansible.builtin.file:
+        src: /etc/sv/seatd
+        dest: /var/service/seatd
+        state: link
+    
+    - name: Start seatd service
+      become: yes
+      ansible.builtin.service:
+        name: seatd
+        state: started
     
     - name: Update font cache
       when: default_font_link.changed
