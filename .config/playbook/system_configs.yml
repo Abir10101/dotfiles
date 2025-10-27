@@ -51,6 +51,15 @@
         name: ufw
         state: started
     
+    - name: Remove D-Bus portal desktop service file
+      become: yes
+      ansible.builtin.file:
+        path: {{ item }}
+        state: absent
+      loop:
+        - /usr/share/dbus-1/services/org.freedesktop.portal.Desktop.service
+        - /usr/share/dbus-1/services/org.freedesktop.impl.portal.desktop.wlr.service
+
     - name: Symlink default font file
       become: yes
       ansible.builtin.file:

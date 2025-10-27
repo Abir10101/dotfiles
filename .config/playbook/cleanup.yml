@@ -28,4 +28,8 @@
           - lightdm-gtk-greeter
           - cronie
           - gssproxy
+          - void-docs-browse
+          - alsa-utils
+          - void-live-audio
+          - putty
         state: absent

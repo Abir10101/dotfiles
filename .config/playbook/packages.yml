@@ -7,13 +7,11 @@
       become: yes
       ansible.builtin.package:
         name:
-          - qtile
+          - niri
           - pavucontrol
           - btop
           - fuse
           - stow
-          - xsel
-          - xfce4-screenshooter
           - podman
           - podman-compose
           - gst-plugins-bad1
@@ -25,23 +23,17 @@
           - slock
           - bleachbit
           - wget
-          - xinit
-          - xorg-minimal
-          - xorg-server
           - xcb-util-image
-          - dmenu
+          - bemenu
           - sxiv
           - unzip
           - xdg-utils
           - cantarell-fonts
-          - picom
           - python3-psutil
-          - xrandr
           - pipewire
-          - xwallpaper
+          - swaybg
           - curl
           - mesa
-          - mesa-dri
           - linux-firmware-intel
           - ufw
           - overpass-otf
@@ -53,6 +45,12 @@
           - uv
           - clipnotify
           - trash-cli
-          - alacritty
-          - rbw
+          - foot
+          - waybar
+          - xdg-desktop-portal-wlr
+          - wl-clipboard
+          - cliphist
+          - aria2
+          - seatd
+          - xwayland-satellite
         state: present
