@@ -20,7 +20,7 @@
           - git
           - NetworkManager
           - ddcutil
-          - slock
+          - swaylock
           - bleachbit
           - wget
           - xcb-util-image
