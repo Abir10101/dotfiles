@@ -1,5 +1,4 @@
 // This config is based on your default Niri config (config.kdl.bk) and incorporates
-// keybindings and application launches from your Qtile config (config.py).
 
 // Input device configuration.
 input {
@@ -69,7 +68,7 @@ input {
 // Find more information on the wiki:
 // https://yalter.github.io/niri/Configuration:-Outputs
 // Remember to uncomment the node by removing "/-"!
-/-output "eDP-1" {
+output "DP-1" {
     // Uncomment this line to disable this output.
     // off
 
@@ -79,10 +78,10 @@ input {
     // for the resolution.
     // If the mode is omitted altogether or is invalid, niri will pick one automatically.
     // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
-    mode "1920x1080@120.030"
+    mode "1366x768@60.000"
 
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
-    scale 2
+    scale 1
 
     // Transform allows to rotate the output counter-clockwise, valid values are:
     // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
@@ -178,7 +177,7 @@ layout {
     // You can enable drop shadows for windows.
     shadow {
         // Uncomment the next line to enable shadows.
-        // on
+        on
 
         // By default, the shadow draws only around its window, and not behind it.
         // Uncomment this setting to make the shadow draw behind its window.
@@ -256,7 +255,7 @@ window-rule {
     open-floating true
 }
 
-// Keybindings adapted from your Qtile config.
+// Keybindings
 binds {
     // Mod+C { center-column; }
 
@@ -276,23 +275,23 @@ binds {
 
     // Launch Power Menu 
     Mod+P hotkey-overlay-title="Open Power Menu" { 
-        spawn-sh "/home/abir101/.config/qtile/scripts/powermenu.sh --fn 'Overpass Bold 11' --nb '#282828' --nf '#ebddb2' --ab '#282828' --af '#ebddb2' --tb '#282828' --tf '#ebddb2' --hb '#458588' --hf '#ebddb2' -H 21 --hp 10";
+        spawn-sh "/home/abir101/.config/niri/scripts/powermenu.sh --fn 'Overpass Bold 11' --nb '#282828' --nf '#ebddb2' --ab '#282828' --af '#ebddb2' --tb '#282828' --tf '#ebddb2' --hb '#458588' --hf '#ebddb2' -H 21 --hp 10";
     }
 
     // Launch Audio Switch Menu 
     Mod+S hotkey-overlay-title="Open Audio Switch Menu" { 
-        spawn-sh "/home/abir101/.config/qtile/scripts/audioswitch.sh --fn 'Overpass Bold 11' --nb '#282828' --nf '#ebddb2' --ab '#282828' --af '#ebddb2' --tb '#282828' --tf '#ebddb2' --hb '#458588' --hf '#ebddb2' -H 21 --hp 10";
+        spawn-sh "/home/abir101/.config/niri/scripts/audioswitch.sh --fn 'Overpass Bold 11' --nb '#282828' --nf '#ebddb2' --ab '#282828' --af '#ebddb2' --tb '#282828' --tf '#ebddb2' --hb '#458588' --hf '#ebddb2' -H 21 --hp 10";
     }
 
     // Launch Clipboard Menu 
     Mod+V hotkey-overlay-title="Open Clipboard Manager" { 
-        spawn-sh "/home/abir101/.config/qtile/scripts/clipmenu.sh --fn 'Overpass Bold 10' --nb '#282828' --nf '#ebddb2' --ab '#282828' --af '#ebddb2' --tb '#282828' --tf '#ebddb2' --hb '#458588' --hf '#ebddb2' -H 21";
+        spawn-sh "/home/abir101/.config/niri/scripts/clipmenu.sh --fn 'Overpass Bold 10' --nb '#282828' --nf '#ebddb2' --ab '#282828' --af '#ebddb2' --tb '#282828' --tf '#ebddb2' --hb '#458588' --hf '#ebddb2' -H 21";
     }
     
     // Niri default for screen locker is Super+Alt+L. This one is kept.
     // Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
-    // --- Window Focus & Movement (matching Qtile defaults/config) ---
+    // --- Window Focus & Movement ---
     // Focus navigation 
     // Mod+J { focus-column-left; }
     // Mod+K { focus-column-right; }
@@ -355,7 +354,6 @@ binds {
     Mod+Control+Q { quit; }
 
     // --- Media/Volume Keys (from config.py) ---
-    // Note: Niri uses XKB key names, which for media keys are often the same as names used in Qtile/X11
     // Raise Volume 
     XF86AudioRaiseVolume { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%+"; }
     // Lower Volume 
