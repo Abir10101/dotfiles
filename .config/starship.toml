@@ -1,7 +1,11 @@
+scan_timeout = 2000
+
 [git_commit]
+disabled = true
 tag_symbol = " tag "
 
 [git_status]
+disabled = true
 ahead = ">"
 behind = "<"
 diverged = "<>"
@@ -9,9 +13,11 @@ renamed = "r"
 deleted = "x"
 
 [aws]
+disabled = true
 symbol = "aws "
 
 [azure]
+disabled = true
 symbol = "az "
 
 [buf]
@@ -33,6 +39,7 @@ symbol = "cobol "
 symbol = "conda "
 
 [container]
+disabled = true
 symbol = "container "
 
 [crystal]
@@ -115,6 +122,7 @@ symbol = "lua "
 symbol = "nodejs "
 
 [memory_usage]
+disabled = true
 symbol = "memory "
 
 [meson]
@@ -189,6 +197,7 @@ Void = "void "
 Windows = "win "
 
 [package]
+disabled = true
 symbol = "pkg "
 
 [perl]
