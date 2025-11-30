@@ -259,6 +259,7 @@ window-rule {
 // Keybindings
 binds {
     // Mod+C { center-column; }
+    Mod+O repeat=false { toggle-overview; }
 
     Mod+Ctrl+P { screenshot; }
 
