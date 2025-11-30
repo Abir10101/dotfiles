@@ -1,0 +1,57 @@
+---
+- name: Install system packages
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Install required packages
+      become: yes
+      ansible.builtin.package:
+        name:
+          - niri
+          - pavucontrol
+          - btop
+          - fuse
+          - stow
+          - podman
+          - podman-compose
+          - gst-plugins-bad1
+          - openvpn
+          - gcc
+          - git
+          - NetworkManager
+          - ddcutil
+          - swaylock
+          - bleachbit
+          - wget
+          - xcb-util-image
+          - bemenu
+          - sxiv
+          - unzip
+          - xdg-utils
+          - cantarell-fonts
+          - python3-psutil
+          - pipewire
+          - swaybg
+          - curl
+          - mesa
+          - linux-firmware-intel
+          - ufw
+          - overpass-otf
+          - fzf
+          - dbus
+          - dumb_runtime_dir
+          - starship
+          - pfetch
+          - uv
+          - clipnotify
+          - trash-cli
+          - foot
+          - Waybar
+          - xdg-desktop-portal-wlr
+          - wl-clipboard
+          - cliphist
+          - aria2
+          - seatd
+          - xwayland-satellite
+          - nwg-look
+        state: present

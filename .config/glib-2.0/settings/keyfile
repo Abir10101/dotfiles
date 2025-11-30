@@ -1,13 +1,31 @@
 [org/gtk/settings/file-chooser]
-window-position=(586, 158)
-window-size=(780, 475)
+window-position=(8, 6)
+window-size=(713, 384)
 date-format='regular'
 location-mode='path-bar'
-show-hidden=true
+show-hidden=false
 show-size-column=true
 show-type-column=true
-sidebar-width=152
+sidebar-width=166
 sort-column='name'
 sort-directories-first=false
 sort-order='ascending'
 type-format='category'
+
+[org/gnome/desktop/interface]
+gtk-theme='Matcha-dark-aliz'
+icon-theme='Qogir'
+cursor-theme='capitaine-cursors-light'
+cursor-size=24
+font-name='Overpass 11'
+font-hinting='slight'
+font-antialiasing='rgba'
+font-rgba-order='rgb'
+text-scaling-factor=1.0
+toolbar-style='both-horiz'
+toolbar-icons-size='large'
+color-scheme='prefer-dark'
+
+[org/gnome/desktop/sound]
+event-sounds=true
+input-feedback-sounds=false
