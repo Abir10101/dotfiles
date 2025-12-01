@@ -2,7 +2,7 @@ theme = "gruvbox"
 
 [editor]
 # Show currently open buffers, only when more than one exists.
-bufferline = "multiple"
+# bufferline = "multiple"
 # Highlight all lines with a cursor
 cursorline = true
 # Use relative line numbers

@@ -5,37 +5,78 @@ import colors
 from libqtile import bar, layout, qtile, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown
 from libqtile.lazy import lazy
-from libqtile.utils import guess_terminal
-# from qtile_extras import widget
 
 # Configuration constants
 MOD = "mod4"
-# FONT_FACE = "Cascadia Code SemiBold"
 FONT_FACE = "Overpass Bold"
 FONT_SIZE = 14
-TERMINAL = guess_terminal()
-# CLIPBOARD = "xfce4-popup-clipman"
-CLIPBOARD = "/home/abir101/.config/dmenu_scripts/cliphist.sh sel"
-AUDIO_OUTPUT = "/home/abir101/.config/dmenu_scripts/audioswitch.sh"
-POWERMENU = "/home/abir101/.config/dmenu_scripts/powermenu.sh"
+TERMINAL = "foot"
 
 # Color scheme setup
 colors, backgroundColor, foregroundColor, workspaceColor, chordColor = colors.gruvbox()
-accentColor = colors[6]
+accentColor = colors[3]
 
-# Menu configuration
-def build_menu_command():
-    """Build dmenu command with styling options."""
-    return (
-        f"dmenu_run"
-        f" -fn 'Overpass:size=12.5:style=Bold'"
-        f" -nb '{backgroundColor}'"
-        f" -nf '{foregroundColor}'"
-        f" -sb '{accentColor[1]}'"
-        f" -sf '{foregroundColor}'"
-    )
+POWERMENU = (
+    f"/home/abir101/.config/qtile/scripts/powermenu.sh"
+    f" --fn '{FONT_FACE} {FONT_SIZE-3}'"
+    f" --nb '{backgroundColor}'"
+    f" --nf '{foregroundColor}'"
+    f" --ab '{backgroundColor}'"
+    f" --af '{foregroundColor}'"
+    f" --tb '{backgroundColor}'"
+    f" --tf '{foregroundColor}'"
+    f" --hb '{colors[3][1]}'"
+    f" --hf '{foregroundColor}'"
+    f" -H 20"
+    f" --hp 10"
+)
 
-mymenu = build_menu_command()
+AUDIO_OUTPUT = (
+    f"/home/abir101/.config/qtile/scripts/audioswitch.sh"
+    f" --fn '{FONT_FACE} {FONT_SIZE-3}'"
+    f" --nb '{backgroundColor}'"
+    f" --nf '{foregroundColor}'"
+    f" --ab '{backgroundColor}'"
+    f" --af '{foregroundColor}'"
+    f" --tb '{backgroundColor}'"
+    f" --tf '{foregroundColor}'"
+    f" --hb '{colors[3][1]}'"
+    f" --hf '{foregroundColor}'"
+    f" -H 20"
+    f" --hp 10"
+)
+
+CLIPBOARD_MENU = (
+    f"/home/abir101/.config/qtile/scripts/clipmenu.sh"
+    f" --fn '{FONT_FACE} {FONT_SIZE-4}'"
+    f" --nb '{backgroundColor}'"
+    f" --nf '{foregroundColor}'"
+    f" --ab '{backgroundColor}'"
+    f" --af '{foregroundColor}'"
+    f" --tb '{backgroundColor}'"
+    f" --tf '{foregroundColor}'"
+    f" --hb '{colors[3][1]}'"
+    f" --hf '{foregroundColor}'"
+    f" -H 20"
+    
+)
+
+APP_MENU = (
+    f"bemenu-run"
+    f" --fn '{FONT_FACE} {FONT_SIZE-3}'"
+    f" --nb '{backgroundColor}'"
+    f" --nf '{foregroundColor}'"
+    f" --ab '{backgroundColor}'"
+    f" --af '{foregroundColor}'"
+    f" --tb '{backgroundColor}'"
+    f" --tf '{foregroundColor}'"
+    f" --hb '{colors[3][1]}'"
+    f" --hf '{foregroundColor}'"
+    f" -H 20"
+    f" --hp 6"
+    f" -p menu"
+)
+
 
 # Key bindings
 keys = [
@@ -79,8 +120,8 @@ keys = [
     Key([MOD, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     
     # Application launchers
-    Key([MOD], "d", lazy.spawn(mymenu), desc="Launch app launcher"),
-    Key([MOD], "v", lazy.spawn(CLIPBOARD), desc="Launch clipboard manager"),
+    Key([MOD], "d", lazy.spawn(APP_MENU), desc="Launch app launcher"),
+    Key([MOD], "v", lazy.spawn(CLIPBOARD_MENU), desc="Launch clipboard manager"),
 
     # Audio controls
     Key([], "XF86AudioRaiseVolume", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%+"), desc="Raise Volume by 3%"),
@@ -129,8 +170,8 @@ groups.append(
 
 # Layout themes and configurations
 LAYOUT_THEME = {
-    "margin": 6,
-    "border_width": 5,
+    "margin": 5,
+    "border_width": 3,
     "border_focus": accentColor,
     "border_normal": backgroundColor
 }
@@ -260,15 +301,12 @@ vol_icon = widget.TextBox(
     }
 )
 
-vol = widget.Volume(
+vol = widget.PulseVolume(
     fmt="{}",
-    mute_command="wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-    get_volume_command="""wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{ if ($3 == "[MUTED]") print "M"; else printf("%.0f%%\\n", $2 * 100) }'""",
-    update_interval=0.3,
     fontsize=FONT_SIZE,
     font=FONT_FACE,
     foreground=foregroundColor,
-    background=colors[0]
+    background=colors[0],
 )
 
 layout_name = widget.CurrentLayout(
@@ -278,15 +316,12 @@ layout_name = widget.CurrentLayout(
     background=colors[0]
 )
 
-tray = widget.Systray(background=colors[0])
-
 # Screen configuration
 screens = [
     Screen(
         top=bar.Bar([
             groupbox,
             open_windows,
-            tray,
             separator,
             layout_name,
             separator,
@@ -304,9 +339,9 @@ screens = [
         margin=0,
         size=FONT_SIZE + 6,
         background=colors[0]
-        )
-        # wallpaper="~/.local/share/backgrounds/wall6.png",
-        # wallpaper_mode="fill"
+        ),
+        wallpaper="/home/abir101/.local/share/backgrounds/wall11.png",
+        wallpaper_mode="fill"
     ),
 ]
 
@@ -330,15 +365,13 @@ reconfigure_screens = True
 auto_minimize = True
 
 # Wayland-specific settings
-wl_input_rules = None
-wl_xcursor_theme = None
-wl_xcursor_size = 24
+wl_xcursor_theme = os.environ.get("XCURSOR_THEME", "Adwaita")
+wl_xcursor_size = int(os.environ.get("XCURSOR_SIZE", 20))
 
 # Java compatibility
-wmname = "LG3D"
+wmname = "QTILE"
 
 # Uncomment to enable autostart script
-# @hook.subscribe.startup_once
-# def autostart():
-#     home = os.path.expanduser('~/.config/qtile/autostart.sh')
-#     subprocess.Popen([home])
+@hook.subscribe.startup_once
+def autostart():
+    subprocess.Popen([os.path.expanduser('/home/abir101/.config/qtile/init_system.sh')])

@@ -5,4 +5,9 @@ if [ -f ~/.bashrc ]; then
     . ~/.bashrc
 fi
 
+if [[ -z $DISPLAY ]] && [[ $(tty) == /dev/tty1 ]]; then
+    # exec dbus-run-session -- qtile start -b wayland
+    dbus-run-session niri --session
+fi
+
 # User specific environment and startup programs

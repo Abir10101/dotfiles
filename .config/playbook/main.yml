@@ -1,0 +1,6 @@
+---
+- import_playbook: packages.yml
+- import_playbook: dotfiles.yml
+- import_playbook: am.yml
+- import_playbook: cleanup.yml
+- import_playbook: system_configs.yml
