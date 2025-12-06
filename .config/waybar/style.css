@@ -1,28 +1,37 @@
-* {
-	font-size: 12px;
-	font-weight: Bold;
-	font-family: "Overpass";
-  margin: 0;
-  padding: 0;
-  border: none;
+/* Import the colors file */
+@import "colors.css";
 
+* {
+    font-size: 12px;
+    font-weight: Bold;
+    font-family: "Overpass";
+    margin: 0;
+    padding: 0;
+    border: none;
 }
 
 window#waybar {
-	background: #292b2e;
-	color: #fdf6e3;
+    /* Mapped from #292b2e to background */
+    background: @background;
+    /* Mapped from #fdf6e3 to on_background */
+    color: @on_background;
 }
 
+/* --- Arrows/Separators --- */
 #custom-right-arrow-dark,
 #custom-left-arrow-dark {
-	color: #1a1a1a;
+    /* Mapped from #1a1a1a to surface_container */
+    color: @surface_container;
 }
 #custom-right-arrow-light,
 #custom-left-arrow-light {
-	color: #292b2e;
-	background: #1a1a1a;
+    /* Mapped from #292b2e to background */
+    color: @background;
+    /* Mapped from #1a1a1a to surface_container */
+    background: @surface_container;
 }
 
+/* --- Module Backgrounds --- */
 #workspaces,
 #clock.1,
 #clock.2,
@@ -33,47 +42,62 @@ window#waybar {
 #battery,
 #disk,
 #tray {
-	background: #1a1a1a;
+    /* Mapped from #1a1a1a to surface_container */
+    background: @surface_container;
 }
 
+/* --- Workspaces Styling --- */
 #workspaces button {
-	padding: 0;
-	color: #fdf6e3;
+    padding: 0 2px;
+    /* Mapped from #fdf6e3 to on_background */
+    color: @on_background;
 }
 #workspaces button.focused {
-	color: #268bd2;
+    /* Mapped from #268bd2 to primary */
+    color: @primary;
 }
 #workspaces button:hover {
-	box-shadow: inherit;
-	text-shadow: inherit;
+    box-shadow: inherit;
+    text-shadow: inherit;
 }
 #workspaces button:hover {
-	background: #1a1a1a;
-	border: #1a1a1a;
-	padding: 0 3px;
+    /* Mapped from #1a1a1a to surface_container */
+    background: @surface_container;
+    /* Mapped from #1a1a1a to surface_container */
+    border: @surface_container;
+    padding: 0 4px;
 }
 
+/* --- Module Colors (Icons/Text) --- */
 #pulseaudio {
-	color: #268bd2;
+    /* Mapped from #268bd2 to primary */
+    color: @primary;
 }
 #memory {
-	color: #2aa198;
+    /* Mapped from #2aa198 to secondary */
+    color: @secondary;
 }
 #cpu {
-	color: #6c71c4;
+    /* Mapped from #6c71c4 to tertiary */
+    color: @tertiary;
 }
 #battery {
-	color: #859900;
+    /* Mapped from #859900 to primary_container (or similar accent) */
+    /* Note: Since your color palette is different, I used primary_container as a distinct accent */
+    color: @primary_container;
 }
 #disk {
-	color: #b58900;
+    /* Mapped from #b58900 to tertiary_container (or similar accent) */
+    /* Note: Since your color palette is different, I used tertiary_container as a distinct accent */
+    color: @tertiary_container;
 }
 
+/* --- Module Padding --- */
 #clock,
 #pulseaudio,
 #memory,
 #cpu,
 #battery,
 #disk {
-	padding: 0 10px;
+    padding: 0 10px;
 }
