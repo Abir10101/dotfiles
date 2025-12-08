@@ -1,9 +1,9 @@
 #!/bin/bash
 
-NB="#141318"
-NF="#cac4cf"
-SB="#4b3e76"
-SF="#e8deff"
+NB="{{colors.background.default.hex}}"
+NF="{{colors.on_surface_variant.default.hex}}"
+SB="{{colors.primary_container.default.hex}}"
+SF="{{colors.on_primary_container.default.hex}}"
 TB="$NB"
 TF="$NF"
 HB="$SB"

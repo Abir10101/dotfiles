@@ -1,9 +1,9 @@
 #!/bin/bash
 
-NB="#141318"
-NF="#cac4cf"
-SB="#4b3e76"
-SF="#e8deff"
+NB="{{colors.background.default.hex}}"
+NF="{{colors.on_surface_variant.default.hex}}"
+SB="{{colors.primary_container.default.hex}}"
+SF="{{colors.on_primary_container.default.hex}}"
 TB="$NB"
 TF="$NF"
 HB="$SB"
@@ -34,7 +34,7 @@ speakers () { \
   fi
 }
 choosespeakers() { \
-  choice=$(printf "Headphones\nSpeakers" | bemenu -i -p "Audio output:" --fn 'Overpass Bold 11' -H 21 --hp 10 "${BEMENU_MATUGEN_COLORS[@]}")
+  choice=$(printf "Headphones\\nSpeakers" | bemenu -i -p "Audio output:" --fn 'Overpass Bold 11' -H 21 --hp 10 "${BEMENU_MATUGEN_COLORS[@]}")
   case "$choice" in
     Headphones) headphones;;
     Speakers) speakers;;

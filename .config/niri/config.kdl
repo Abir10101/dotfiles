@@ -165,24 +165,24 @@ binds {
 
     // Launch app launcher (bemenu-run) 
     Mod+D hotkey-overlay-title="Run an Application: bemenu-run" { 
-        spawn-sh "bemenu-run --fn 'Overpass Bold 11' --nb '#282828' --nf '#ebddb2' --ab '#282828' --af '#ebddb2' --tb '#282828' --tf '#ebddb2' --hb '#458588' --hf '#ebddb2' -H 21 --hp 6 -p menu";
+        spawn-sh "/home/abir101/.config/niri/scripts/appmenu.sh";
     }
 
     // Launch Power Menu 
     Mod+P hotkey-overlay-title="Open Power Menu" { 
-        spawn-sh "/home/abir101/.config/niri/scripts/powermenu.sh --fn 'Overpass Bold 11' --nb '#282828' --nf '#ebddb2' --ab '#282828' --af '#ebddb2' --tb '#282828' --tf '#ebddb2' --hb '#458588' --hf '#ebddb2' -H 21 --hp 10";
+        spawn-sh "/home/abir101/.config/niri/scripts/powermenu.sh";
     }
 
     // Launch Audio Switch Menu 
     Mod+S hotkey-overlay-title="Open Audio Switch Menu" { 
-        spawn-sh "/home/abir101/.config/niri/scripts/audioswitch.sh --fn 'Overpass Bold 11' --nb '#282828' --nf '#ebddb2' --ab '#282828' --af '#ebddb2' --tb '#282828' --tf '#ebddb2' --hb '#458588' --hf '#ebddb2' -H 21 --hp 10";
+        spawn-sh "/home/abir101/.config/niri/scripts/audioswitch.sh";
     }
 
     // Launch Clipboard Menu 
     Mod+V hotkey-overlay-title="Open Clipboard Manager" { 
-        spawn-sh "/home/abir101/.config/niri/scripts/clipmenu.sh --fn 'Overpass Bold 10' --nb '#282828' --nf '#ebddb2' --ab '#282828' --af '#ebddb2' --tb '#282828' --tf '#ebddb2' --hb '#458588' --hf '#ebddb2' -H 21";
+        spawn-sh "/home/abir101/.config/niri/scripts/clipmenu.sh";
     }
-    
+
     // Niri default for screen locker is Super+Alt+L. This one is kept.
     // Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 

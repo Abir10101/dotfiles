@@ -1,4 +1,4 @@
-theme = "gruvbox_dark_hard"
+theme = "rose_pine"
 
 [editor]
 # Show currently open buffers, only when more than one exists.

@@ -12,3 +12,27 @@ output_path = "~/.config/foot/themes/matugen.ini"
 [templates.niri]
 input_path = "~/.config/matugen/templates/niri_layout.kdl"
 output_path = "~/.config/niri/layout.kdl"
+
+[templates.clipmenu]
+input_path = "~/.config/matugen/templates/clipmenu.sh"
+output_path = "~/.config/niri/scripts/clipmenu.sh"
+
+[templates.audioswitch]
+input_path = "~/.config/matugen/templates/audioswitch.sh"
+output_path = "~/.config/niri/scripts/audioswitch.sh"
+
+[templates.powermenu]
+input_path = "~/.config/matugen/templates/powermenu.sh"
+output_path = "~/.config/niri/scripts/powermenu.sh"
+
+[templates.appmenu]
+input_path = "~/.config/matugen/templates/appmenu.sh"
+output_path = "~/.config/niri/scripts/appmenu.sh"
+
+[templates.btop]
+input_path = '~/.config/matugen/templates/btop.theme'
+output_path = '~/.config/btop/themes/matugen.theme'
+
+[templates.yazi]
+input_path = '~/.config/matugen/templates/yazi.toml'
+output_path = '~/.config/yazi/theme.toml'

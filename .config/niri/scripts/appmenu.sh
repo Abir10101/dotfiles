@@ -19,9 +19,4 @@ BEMENU_MATUGEN_COLORS=(
   --hb "$HB" --hf "$HF"
 )
 
-case "$(printf "zzz\nreboot\nshutdown" | bemenu -i -p 'Power menu:' --fn 'Overpass Bold 11' -H 21 --hp 10 "${BEMENU_MATUGEN_COLORS[@]}")" in
-	zzz) swaylock -f && sudo zzz ;;
-	reboot) sudo reboot ;;
-	shutdown) sudo poweroff ;;
-	*) exit 1 ;;
-esac
+bemenu-run --fn 'Overpass Bold 11' -H 21 --hp 6 -p menu "${BEMENU_MATUGEN_COLORS[@]}"
