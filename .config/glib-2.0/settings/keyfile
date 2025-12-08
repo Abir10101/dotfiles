@@ -13,7 +13,7 @@ sort-order='ascending'
 type-format='category'
 
 [org/gnome/desktop/interface]
-gtk-theme='Matcha-dark-aliz'
+gtk-theme='rose-pine-gtk'
 icon-theme='Qogir'
 cursor-theme='capitaine-cursors-light'
 cursor-size=24
@@ -24,7 +24,7 @@ font-rgba-order='rgb'
 text-scaling-factor=1.0
 toolbar-style='both-horiz'
 toolbar-icons-size='large'
-color-scheme='prefer-dark'
+color-scheme='prefer-light'
 
 [org/gnome/desktop/sound]
 event-sounds=true
