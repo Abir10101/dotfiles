@@ -6,7 +6,7 @@ export XDG_CURRENT_DESKTOP=wlroots
 
 xwayland-satellite &
 
-swaybg -o DP-1 -i /home/abir101/.local/share/backgrounds/wall15.jpg -m fill &
+swaybg -o DP-1 -i /home/abir101/.local/share/backgrounds/wall16.png -m fill &
 wl-paste --type text --watch cliphist store &
 $HOME/.local/bin/startaudio.sh
 
