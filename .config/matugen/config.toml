@@ -7,7 +7,7 @@ post_hook = 'pkill -SIGUSR2 waybar'
 
 [templates.foot]
 input_path = "~/.config/matugen/templates/foot-colors.ini"
-output_path = "~/.config/foot/themes/matugen.ini"
+output_path = "~/.config/foot/themes/matugen"
 
 [templates.niri]
 input_path = "~/.config/matugen/templates/niri_layout.kdl"
@@ -32,7 +32,3 @@ output_path = "~/.config/niri/scripts/appmenu.sh"
 [templates.btop]
 input_path = '~/.config/matugen/templates/btop.theme'
 output_path = '~/.config/btop/themes/matugen.theme'
-
-[templates.yazi]
-input_path = '~/.config/matugen/templates/yazi.toml'
-output_path = '~/.config/yazi/theme.toml'

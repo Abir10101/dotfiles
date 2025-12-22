@@ -1,0 +1,39 @@
+# -*- conf -*-
+# Matugen Generated Colors for Foot Terminal
+# Material You Dynamic Colors
+
+[colors]
+
+# Base Colors
+background=121318
+foreground=c7c5d0
+
+# Cursor colors (background foreground)
+cursor=0b154b bbc3ff
+
+# Selection colors
+selection-foreground=e0e1f9
+selection-background=434659
+
+# Regular colors (0-7)
+regular0=29292f    # black (Surface Container High)
+regular1=93000a                     # red (Error)
+regular2=c3c5dd                 # green (Secondary - muted slate)
+regular3=5d3c55        # yellow (Tertiary Container - muted gold)
+regular4=bbc3ff                   # blue (Primary)
+regular5=e6bad7                  # magenta (Tertiary - muted iris)
+regular6=3a4379         # cyan (Primary Container - muted blue)
+regular7=c7c5d0        # white (On Surface Variant)
+
+# Bright colors (8-15)
+bright0=90909a                    # bright black (Outline)
+bright1=ffdad6            # bright red (Error Container)
+bright2=c3c5dd        # bright green (Secondary Fixed Dim)
+bright3=e6bad7         # bright yellow (Tertiary Fixed Dim)
+bright4=bbc3ff          # bright blue (Primary Fixed Dim)
+bright5=ffd7f1      # bright magenta (On Tertiary Container)
+bright6=dee0ff       # bright cyan (On Primary Container)
+bright7=e4e1e9                 # bright white (On Surface)
+
+# Flash color (for bell/alerts)
+flash=e6bad7
