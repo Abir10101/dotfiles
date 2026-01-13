@@ -6,8 +6,8 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # User specific environment
-if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
-    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:$HOME/.tarman/path/" ]]; then
+    PATH="$HOME/.local/bin:$HOME/bin:$HOME/.tarman/path/:$PATH"
 fi
 export PATH
 
