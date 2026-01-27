@@ -1,26 +1,27 @@
 [Added Associations]
 application/x-theme=helix-AM.desktop;
 video/x-matroska=smplayer-AM.desktop
-x-scheme-handler/http=userapp-Zen-4VB2C3.desktop;
-x-scheme-handler/https=userapp-Zen-4VB2C3.desktop;
-x-scheme-handler/chrome=userapp-Zen-4VB2C3.desktop;
-text/html=userapp-Zen-4VB2C3.desktop;
-application/x-extension-htm=userapp-Zen-4VB2C3.desktop;
-application/x-extension-html=userapp-Zen-4VB2C3.desktop;
-application/x-extension-shtml=userapp-Zen-4VB2C3.desktop;
-application/xhtml+xml=userapp-Zen-4VB2C3.desktop;
-application/x-extension-xhtml=userapp-Zen-4VB2C3.desktop;
-application/x-extension-xht=userapp-Zen-4VB2C3.desktop;
+x-scheme-handler/http=Zen.desktop;userapp-Zen-4VB2C3.desktop;
+x-scheme-handler/https=Zen.desktop;userapp-Zen-4VB2C3.desktop;
+x-scheme-handler/chrome=Zen.desktop;userapp-Zen-4VB2C3.desktop;
+text/html=userapp-Zen-4VB2C3.desktop;Zen.desktop;
+application/x-extension-htm=userapp-Zen-4VB2C3.desktop;Zen.desktop;
+application/x-extension-html=userapp-Zen-4VB2C3.desktop;Zen.desktop;
+application/x-extension-shtml=userapp-Zen-4VB2C3.desktop;Zen.desktop;
+application/xhtml+xml=userapp-Zen-4VB2C3.desktop;Zen.desktop;
+application/x-extension-xhtml=userapp-Zen-4VB2C3.desktop;Zen.desktop;
+application/x-extension-xht=userapp-Zen-4VB2C3.desktop;Zen.desktop;
 
 [Default Applications]
 video/x-matroska=smplayer-AM.desktop
-x-scheme-handler/http=userapp-Zen-4VB2C3.desktop
-x-scheme-handler/https=userapp-Zen-4VB2C3.desktop
-x-scheme-handler/chrome=userapp-Zen-4VB2C3.desktop
-text/html=userapp-Zen-4VB2C3.desktop
-application/x-extension-htm=userapp-Zen-4VB2C3.desktop
-application/x-extension-html=userapp-Zen-4VB2C3.desktop
-application/x-extension-shtml=userapp-Zen-4VB2C3.desktop
-application/xhtml+xml=userapp-Zen-4VB2C3.desktop
-application/x-extension-xhtml=userapp-Zen-4VB2C3.desktop
-application/x-extension-xht=userapp-Zen-4VB2C3.desktop
+x-scheme-handler/http=Zen.desktop
+x-scheme-handler/https=Zen.desktop
+x-scheme-handler/chrome=Zen.desktop
+text/html=Zen.desktop
+application/x-extension-htm=Zen.desktop
+application/x-extension-html=Zen.desktop
+application/x-extension-shtml=Zen.desktop
+application/xhtml+xml=Zen.desktop
+application/x-extension-xhtml=Zen.desktop
+application/x-extension-xht=Zen.desktop
+x-scheme-handler/bruno=bruno.desktop
