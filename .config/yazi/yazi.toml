@@ -1,0 +1,9 @@
+[opener]
+smplayer = [
+    { run = 'smplayer "$@"', orphan = true, desc = "SMPlayer", for = "unix" },
+]
+
+[open]
+prepend_rules = [
+	{ mime = "video/*", use = "smplayer" },
+]

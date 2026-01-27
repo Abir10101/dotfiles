@@ -13,7 +13,7 @@ application/x-extension-xhtml=userapp-Zen-4VB2C3.desktop;Zen.desktop;
 application/x-extension-xht=userapp-Zen-4VB2C3.desktop;Zen.desktop;
 
 [Default Applications]
-video/x-matroska=smplayer-AM.desktop
+video/x-matroska=smplayer.desktop
 x-scheme-handler/http=Zen.desktop
 x-scheme-handler/https=Zen.desktop
 x-scheme-handler/chrome=Zen.desktop
@@ -24,4 +24,10 @@ application/x-extension-shtml=Zen.desktop
 application/xhtml+xml=Zen.desktop
 application/x-extension-xhtml=Zen.desktop
 application/x-extension-xht=Zen.desktop
+video/mp4=smplayer.desktop
+video/x-msvideo=smplayer.desktop
+video/quicktime=smplayer.desktop
+video/webm=smplayer.desktop
+video/x-flv=smplayer.desktop
+video/mpeg=smplayer.desktop
 x-scheme-handler/bruno=bruno.desktop
