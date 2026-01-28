@@ -54,4 +54,15 @@
           - seatd
           - xwayland-satellite
           - nwg-look
+          - kubectl
+          - yazi
+          - smplayer
+          - mpv
+          - wf-recorder
+          - intel-media-driver
+          - intel-video-accel
+          - intel-gpu-tools
+          - profile-cleaner
+          - helix
+          - mise
         state: present
