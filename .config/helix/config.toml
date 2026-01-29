@@ -17,7 +17,9 @@ enable = true
 
 [editor.indent-guides]
 character = "╎"
+# character = "▏"
 render = true
+skip-levels = 0
 
 [editor.whitespace]
 render = "all"
@@ -27,7 +29,8 @@ space = "·"
 nbsp = "⍽"
 tab = "→"
 newline = "⏎"
-tabpad = "."
+tabpad = " "
+# tabpad = "░"
 
 [editor.cursor-shape]
 insert = "bar"
