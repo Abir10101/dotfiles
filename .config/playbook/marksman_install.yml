@@ -4,7 +4,7 @@
   gather_facts: false
   become: true
   vars:
-    marksman_url: "https://github.com/artempyanykh/marksman/releases/latest/download/marksman-linux-arm64"
+    marksman_url: "https://github.com/artempyanykh/marksman/releases/latest/download/marksman-linux-x64"
     download_dir: "/tmp"
     install_dir: "/usr/local/bin"
 
