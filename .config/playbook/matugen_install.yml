@@ -1,0 +1,61 @@
+---
+- name: Install matugen theme switcher
+  hosts: localhost
+  gather_facts: false
+  become: true
+  vars:
+    matugen_version: "3.1.0"
+    matugen_url: "https://github.com/InioX/matugen/releases/download/v{{ matugen_version }}/matugen-{{ matugen_version }}-x86_64.tar.gz"
+    download_dir: "/tmp/matugen"
+    install_dir: "/usr/local/bin"
+
+  tasks:
+    - name: Check download directory exists
+      ansible.builtin.file:
+        path: "{{ download_dir }}"
+        state: "directory"
+        mode: "0755"
+      tags:
+        - setup
+
+    - name: Check install directory exists
+      ansible.builtin.file:
+        path: "{{ install_dir }}"
+        state: "directory"
+        mode: "0755"
+      tags:
+        - setup
+
+    - name: Download matugen archive
+      ansible.builtin.get_url:
+        url: "{{ matugen_url }}"
+        dest: "{{ download_dir }}/matugen.tar.gz"
+        mode: "0644"
+      tags:
+        - download
+
+    - name: Extract matugen archive
+      ansible.builtin.unarchive:
+        src: "{{ download_dir }}/matugen.tar.gz"
+        dest: "{{ download_dir }}"
+        remote_src: true
+      tags:
+        - extract
+
+    - name: Move matugen binary to install directory
+      ansible.builtin.copy:
+        src: "{{ download_dir }}/matugen"
+        dest: "{{ install_dir }}/matugen"
+        mode: "0755"
+        remote_src: true
+      tags:
+        - install
+
+    - name: Cleanup downloaded files
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - "{{ download_dir }}"
+      tags:
+        - cleanup

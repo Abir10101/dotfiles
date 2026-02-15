@@ -32,13 +32,8 @@
         cmd: am -i "{{item}}"
       loop:
         - bruno
-        - helix
         - zen-browser
         - localsend
-        - obs-studio
-        - smplayer
-        - yazi
-        - zen-browser
         - bitwarden
         - onlyoffice
       when: am_bin.stat.exists

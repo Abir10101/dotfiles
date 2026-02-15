@@ -2,12 +2,12 @@
 - name: Install c/c++ language server clangd
   hosts: localhost
   gather_facts: false
-  become: false
+  become: true
   vars:
     clangd_version: "20.1.8"
     clangd_url: "https://github.com/clangd/clangd/releases/download/{{ clangd_version }}/clangd-linux-{{ clangd_version }}.zip"
     download_dir: "/tmp"
-    install_dir: "{{ lookup('env', 'HOME') }}/.local/bin"
+    install_dir: "/usr/local/bin"
 
   tasks:
     - name: Check install directory exists
