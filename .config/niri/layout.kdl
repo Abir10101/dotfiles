@@ -107,3 +107,7 @@ layout {
         // bottom 64
     }
 }
+
+overview {
+  backdrop-color "#71361b"
+}

@@ -107,3 +107,7 @@ layout {
         // bottom 64
     }
 }
+
+overview {
+  backdrop-color "{{colors.primary_container.default.hex}}"
+}
