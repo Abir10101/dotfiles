@@ -3,6 +3,7 @@
 {
 	"layer": "top",
 	"position": "top",
+	"height": 24,
 
 	"modules-left": [
 		"niri/workspaces",
@@ -20,6 +21,7 @@
 		"custom/right-arrow-dark"
 	],
 	"modules-right": [
+		"mpris",
 		"custom/left-arrow-dark",
 		"cpu",
 		"custom/left-arrow-light",
@@ -81,4 +83,10 @@
 		"interval": 5,
 		"format": "Cpu {usage:2}%"
 	},
+	"mpris": {
+    "format": "⏸ <i>{title} - {artist} [{position}/{length}]</i>",
+    "format-paused": "▶︎ <i>{title} - {artist} [{position}/{length}]</i>",
+		"max-length": 30,
+		"interval": 1,
+	}
 }
