@@ -1,9 +1,9 @@
 #!/bin/bash
 
-NB="#1a110e"
-NF="#d8c2ba"
-SB="#71361b"
-SF="#ffdbcd"
+NB="#19120c"
+NF="#d6c3b6"
+SB="#6b3b05"
+SF="#ffdcc1"
 TB="$NB"
 TF="$NF"
 HB="$SB"
