@@ -88,5 +88,15 @@
     "format-paused": "▶︎ <i>{title} - {artist} [{position}/{length}]</i>",
 		"max-length": 30,
 		"interval": 1,
+		"on-click": "playerctl play-pause"
 	}
+	// "mpris": {
+ //    "format": "⏮ ⏸ ⏭ <i>{title} - {artist} [{position}/{length}]</i>",
+ //    "format-paused": "⏮ ▶︎ ⏭ <i>{title} - {artist} [{position}/{length}]</i>",
+ //    "max-length": 30,
+ //    "interval": 1,
+ //    "on-click-middle": "playerctl play-pause",
+ //    "on-click": "playerctl previous",
+ //    "on-click-right": "playerctl next"
+	// }
 }

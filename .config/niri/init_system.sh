@@ -6,7 +6,8 @@ export XDG_CURRENT_DESKTOP=wlroots
 
 xwayland-satellite &
 
-swaybg -o Virtual-1 -i /home/abir101/.local/share/backgrounds/dune.jpg -m fill &
+swaybg -o Virtual-1 -i /home/abir101/.local/share/backgrounds/wall17.jpg -m fill &
+
 wl-paste --type text --watch cliphist store &
 $HOME/.local/bin/startaudio.sh
 
