@@ -142,6 +142,7 @@ animations {
 // https://yalter.github.io/niri/Configuration:-Window-Rules
 window-rule {
     // open-maximized true
+    opacity 0.965
 }
 
 window-rule {
