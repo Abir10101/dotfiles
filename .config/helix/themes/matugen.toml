@@ -1,4 +1,4 @@
 "inherits" = "gruvbox"
 "ui.background" = { }
-"ui.statusline" = { bg = "#261e18" }
-"ui.cursorline" = { bg = "#261e18" }
+"ui.statusline" = { bg = "#1c2024" }
+"ui.cursorline" = { bg = "#1c2024" }
