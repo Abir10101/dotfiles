@@ -6,7 +6,7 @@
 	"height": 24,
 
 	"modules-left": [
-		"niri/workspaces",
+		"ext/workspaces",
 		"custom/right-arrow-dark"
 	],
 	"modules-center": [
@@ -49,10 +49,12 @@
 		"tooltip": false
 	},
 
-	"niri/workspaces": {
-    "disable-scroll": true,
-    "disable-markup": true,
-    "format": "{index}"
+	"ext/workspaces": {
+		"format": "{id}",
+		"ignore-hidden": true,
+		"on-click": "activate",
+		"on-click-right": "deactivate",
+		"sort-by-id": true
 	},
 
 	"clock#1": {
@@ -73,7 +75,7 @@
 		"interval": 1,
 		"tooltip": false,
 		"on-click": "pavucontrol",
-		"scroll-step": 3,
+		"scroll-step": 3
 	},
 	"memory": {
 		"interval": 5,
@@ -90,13 +92,4 @@
 		"interval": 1,
 		"on-click": "playerctl play-pause"
 	}
-	// "mpris": {
- //    "format": "⏮ ⏸ ⏭ <i>{title} - {artist} [{position}/{length}]</i>",
- //    "format-paused": "⏮ ▶︎ ⏭ <i>{title} - {artist} [{position}/{length}]</i>",
- //    "max-length": 30,
- //    "interval": 1,
- //    "on-click-middle": "playerctl play-pause",
- //    "on-click": "playerctl previous",
- //    "on-click-right": "playerctl next"
-	// }
 }
