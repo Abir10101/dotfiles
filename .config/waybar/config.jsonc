@@ -53,9 +53,8 @@
 		"format": "{id}",
 		"ignore-hidden": true,
 		"on-click": "activate",
-		"on-click-right": "deactivate",
-		"sort-by-id": true
-	},
+		"sort-by-id": true,
+  },
 
 	"clock#1": {
 		"format": "{:%a}",
