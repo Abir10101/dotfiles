@@ -163,7 +163,7 @@ blur {
     passes 3
     offset 3.0
     noise 0.2
-    saturation 3
+    saturation 2
 }
 
 window-rule {
