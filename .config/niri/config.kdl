@@ -140,7 +140,7 @@ animations {
 // Find more information on the wiki:
 // https://yalter.github.io/niri/Configuration:-Window-Rules
 window-rule {
-    opacity 0.85
+    opacity 0.8
     background-effect {
         blur true
     }
@@ -148,11 +148,11 @@ window-rule {
 
 window-rule {
     match is-active=false
-    opacity 0.75
+    opacity 0.7
 }
 
 layer-rule {
-    opacity 0.85
+    opacity 0.8
     background-effect {
         blur true
     }
