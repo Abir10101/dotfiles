@@ -30,7 +30,7 @@ fi
 
 # Set brightness
 echo "Setting brightness to $brightness%..."
-if ddcutil setvcp 10 "$brightness" 2>/dev/null; then
+if ddcutil setvcp 10 "$brightness" > /dev/null; then
     echo "Brightness set to $brightness%"
 else
     echo "Error: Failed to set brightness. Make sure:"

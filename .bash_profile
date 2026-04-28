@@ -6,8 +6,8 @@ if [ -f ~/.bashrc ]; then
 fi
 
 if [[ -z $DISPLAY ]] && [[ $(tty) == /dev/tty1 ]]; then
-    # exec dbus-run-session -- qtile start -b wayland
     dbus-run-session niri --session
+    # dbus-run-session mango
 fi
 
 # User specific environment and startup programs

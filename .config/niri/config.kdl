@@ -141,8 +141,30 @@ animations {
 // Find more information on the wiki:
 // https://yalter.github.io/niri/Configuration:-Window-Rules
 window-rule {
-    // open-maximized true
-    opacity 0.965
+    opacity 0.85
+    background-effect {
+        blur true
+    }
+}
+
+window-rule {
+    match is-active=false
+    opacity 0.75
+}
+
+layer-rule {
+    opacity 0.85
+    background-effect {
+        blur true
+    }
+}
+
+blur {
+    // off
+    passes 3
+    offset 3.0
+    noise 0.2
+    saturation 3
 }
 
 window-rule {

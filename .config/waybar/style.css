@@ -52,7 +52,7 @@ window#waybar {
     /* Mapped from #fdf6e3 to on_background */
     color: @on_background;
 }
-#workspaces button.focused {
+#workspaces button.active {
     /* Mapped from #268bd2 to primary */
     color: @primary;
 }
