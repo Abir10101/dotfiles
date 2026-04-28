@@ -6,7 +6,7 @@
 	"height": 24,
 
 	"modules-left": [
-		"ext/workspaces",
+		"niri/workspaces",
 		"custom/right-arrow-dark"
 	],
 	"modules-center": [
@@ -49,11 +49,10 @@
 		"tooltip": false
 	},
 
-	"ext/workspaces": {
-		"format": "{id}",
-		"ignore-hidden": true,
-		"on-click": "activate",
-		"sort-by-id": true,
+	"niri/workspaces": {
+		"format": "{index}",
+		"disable-scroll": true,
+		"disable-markup": true
   },
 
 	"clock#1": {
