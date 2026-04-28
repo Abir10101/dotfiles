@@ -64,8 +64,8 @@ layout {
 
         width 3
         // active-color "#444b04"
-        active-color "#004c6d"
-        inactive-color "#1c2024"
+        active-color "#4b4900"
+        inactive-color "#212018"
 
         // Color of the border around windows that request your attention.
         urgent-color "#93000a"
@@ -96,7 +96,7 @@ layout {
         offset x=0 y=5
 
         // You can also change the shadow color and opacity.
-        color "#0a0f12"
+        color "#0f0e07"
     }
 
     // Struts shrink the area occupied by windows, similarly to layer-shell panels.
@@ -109,5 +109,5 @@ layout {
 }
 
 overview {
-  backdrop-color "#004c6d"
+  backdrop-color "#4b4900"
 }
