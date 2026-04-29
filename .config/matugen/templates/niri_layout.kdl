@@ -3,7 +3,7 @@
 // https://yalter.github.io/niri/Configuration:-Layout
 layout {
     // Set gaps around windows in logical pixels.
-    gaps 5
+    gaps 9
 
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -11,8 +11,8 @@ layout {
     // - "always", the focused column will always be centered.
     // - "on-overflow", focusing a column will center it if it doesn't fit
     //   together with the previously focused column.
-    center-focused-column "on-overflow"
-    always-center-single-column
+    // center-focused-column "on-overflow"
+    // always-center-single-column
 
     // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
     preset-column-widths {
@@ -43,13 +43,11 @@ layout {
         off
 
         // How many logical pixels the ring extends out from the windows.
-        width 4
+        width 3
 
-        // Color of the ring on the active monitor.
-        active-color "#B2C0EB"
-
-        // Color of the ring on inactive monitors.
-        inactive-color "#928375"
+        active-color "{{colors.scrim.default.hex}}"
+        inactive-color "{{colors.surface_container.default.hex}}"
+        urgent-color "{{colors.error_container.default.hex}}"
 
         // You can also use gradients. They take precedence over solid colors.
         // active-gradient from="#80c8ff" to="#c7ff7f" angle=45
@@ -60,14 +58,11 @@ layout {
     border {
         // The settings are the same as for the focus ring.
         // If you enable the border, you probably want to disable the focus ring.
-        on
+        // on
 
         width 3
-        // active-color "#444b04"
         active-color "{{colors.primary_container.default.hex}}"
         inactive-color "{{colors.surface_container.default.hex}}"
-
-        // Color of the border around windows that request your attention.
         urgent-color "{{colors.error_container.default.hex}}"
 
         // Gradients can use a few different interpolation color spaces.
@@ -90,7 +85,7 @@ layout {
         softness 30
 
         // Spread expands the shadow.
-        spread 10
+        spread 3
 
         // Offset moves the shadow relative to the window.
         offset x=0 y=5
