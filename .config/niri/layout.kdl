@@ -40,15 +40,13 @@ layout {
     // Active (workspaceColor: #B2C0EB)  and Inactive (foregroundColorTwo: #928375).
     focus-ring {
         // Uncomment this line to disable the focus ring.
-        // off
+        off
 
         // How many logical pixels the ring extends out from the windows.
         width 3
 
-        active-color "#4b4900"
+        active-color "#000000"
         inactive-color "#212018"
-
-        // Color of the border around windows that request your attention.
         urgent-color "#93000a"
 
         // You can also use gradients. They take precedence over solid colors.
@@ -63,11 +61,8 @@ layout {
         // on
 
         width 3
-        // active-color "#444b04"
         active-color "#4b4900"
         inactive-color "#212018"
-
-        // Color of the border around windows that request your attention.
         urgent-color "#93000a"
 
         // Gradients can use a few different interpolation color spaces.
