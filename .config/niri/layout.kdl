@@ -46,7 +46,7 @@ layout {
         width 3
 
         active-color "#000000"
-        inactive-color "#212018"
+        inactive-color "#1b211e"
         urgent-color "#93000a"
 
         // You can also use gradients. They take precedence over solid colors.
@@ -61,8 +61,8 @@ layout {
         // on
 
         width 3
-        active-color "#4b4900"
-        inactive-color "#212018"
+        active-color "#005140"
+        inactive-color "#1b211e"
         urgent-color "#93000a"
 
         // Gradients can use a few different interpolation color spaces.
@@ -91,7 +91,7 @@ layout {
         offset x=0 y=5
 
         // You can also change the shadow color and opacity.
-        color "#0f0e07"
+        color "#090f0d"
     }
 
     // Struts shrink the area occupied by windows, similarly to layer-shell panels.
@@ -104,5 +104,5 @@ layout {
 }
 
 overview {
-  backdrop-color "#4b4900"
+  backdrop-color "#005140"
 }
