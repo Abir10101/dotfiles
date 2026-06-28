@@ -2,7 +2,7 @@
 
 export XDG_SESSION_TYPE=wayland
 export QT_QPA_PLATFORM=wayland
-export XDG_CURRENT_DESKTOP=mango
+export XDG_CURRENT_DESKTOP=niri
 
 xwayland-satellite &
 

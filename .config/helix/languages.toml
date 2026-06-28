@@ -12,3 +12,8 @@ auto-pairs = false
 name = "sql"
 indent = { tab-width = 4, unit = "\t" }
 auto-pairs = false
+
+[[language]]
+name = "c"
+indent = { tab-width = 4, unit = "\t" }
+auto-pairs = false
