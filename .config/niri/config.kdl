@@ -131,7 +131,7 @@ screenshot-path "~/pictures/Screenshot_%Y_%m_%d_%H_%M_%S.png"
 // https://yalter.github.io/niri/Configuration:-Animations
 animations {
     // Uncomment to turn off all animations.
-    // off
+    off
 
     // Slow down all animations by this factor. Values below 1 speed them up instead.
     // slowdown 3.0
@@ -140,24 +140,24 @@ animations {
 // Window rules let you adjust behavior for individual windows.
 // Find more information on the wiki:
 // https://yalter.github.io/niri/Configuration:-Window-Rules
-window-rule {
-    opacity 0.8
-    background-effect {
-        blur true
-    }
-}
+// window-rule {
+//     opacity 0.8
+//     background-effect {
+//         blur true
+//     }
+// }
 
-window-rule {
-    match is-active=false
-    opacity 0.7
-}
+// window-rule {
+//     match is-active=false
+//     opacity 0.7
+// }
 
-layer-rule {
-    opacity 0.8
-    background-effect {
-        blur true
-    }
-}
+// layer-rule {
+//     opacity 0.8
+//     background-effect {
+//         blur true
+//     }
+// }
 
 blur {
     // off

@@ -19,4 +19,4 @@ BEMENU_MATUGEN_COLORS=(
   --hb "$HB" --hf "$HF"
 )
 
-cliphist list | bemenu -l 5 -i -p 'Clipboard:' --fn 'Overpass Bold 10' -H 21 "${BEMENU_MATUGEN_COLORS[@]}" | cliphist decode | wl-copy
+cliphist list | bemenu -l 5 -i -p 'Clipboard:' --fn 'Overpass Bold 11' -H 21 "${BEMENU_MATUGEN_COLORS[@]}" | cliphist decode | wl-copy
