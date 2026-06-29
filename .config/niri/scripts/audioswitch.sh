@@ -34,7 +34,7 @@ speakers () { \
   fi
 }
 choosespeakers() { \
-  choice=$(printf "Headphones\nSpeakers" | bemenu -i -p "Audio output:" --fn 'Inter Display Bold 10' -H 24 --hp 10 "${BEMENU_MATUGEN_COLORS[@]}")
+  choice=$(printf "Headphones\nSpeakers" | bemenu -i -p "Audio output:" --fn 'Overpass Bold 11' -H 21 --hp 10 "${BEMENU_MATUGEN_COLORS[@]}")
   case "$choice" in
     Headphones) headphones;;
     Speakers) speakers;;

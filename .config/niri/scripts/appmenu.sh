@@ -19,4 +19,4 @@ BEMENU_MATUGEN_COLORS=(
   --hb "$HB" --hf "$HF"
 )
 
-bemenu-run --fn 'Inter Display Bold 10' -H 24 --hp 6 -p menu "${BEMENU_MATUGEN_COLORS[@]}"
+bemenu-run --fn 'Overpass Bold 11' -H 21 --hp 6 -p menu "${BEMENU_MATUGEN_COLORS[@]}"
