@@ -1,0 +1,7 @@
+binds {
+    Mod+Comma repeat=false hotkey-overlay-title="Settings: Toggle" { spawn "dms" "ipc" "call" "settings" "toggle"; }
+    Mod+D hotkey-overlay-title="Default Launcher: Toggle" { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
+    Mod+P hotkey-overlay-title="Power Menu: Toggle" { spawn "dms" "ipc" "call" "powermenu" "toggle"; }
+    Mod+S hotkey-overlay-title="Audio Output: Cycle" { spawn "dms" "ipc" "call" "audio" "cycleoutput"; }
+    Mod+V allow-inhibiting=false hotkey-overlay-title="Clipboard: Toggle" { spawn "dms" "ipc" "call" "clipboard" "toggle"; }
+}

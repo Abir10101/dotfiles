@@ -17,9 +17,9 @@ output_path = "~/.config/foot/themes/matugen"
 input_path = "~/.config/matugen/templates/niri_layout.kdl"
 output_path = "~/.config/niri/layout.kdl"
 
-[templates.mangowc]
-input_path = "~/.config/matugen/templates/mangowc.conf"
-output_path = "~/.config/mango/colors.conf"
+# [templates.mangowc]
+# input_path = "~/.config/matugen/templates/mangowc.conf"
+# output_path = "~/.config/mango/colors.conf"
 
 [templates.clipmenu_niri]
 input_path = "~/.config/matugen/templates/clipmenu.sh"

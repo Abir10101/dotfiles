@@ -1,4 +1,4 @@
-"inherits" = "monokai_soda"
+"inherits" = "gruvbox"
 "ui.background" = { }
-"ui.statusline" = { bg = "#1b211e" }
-"ui.cursorline" = { bg = "#1b211e" }
+"ui.statusline" = { bg = "#271d1b" }
+"ui.cursorline" = { bg = "#271d1b" }
