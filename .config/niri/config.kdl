@@ -32,6 +32,7 @@ environment {
 
 spawn-at-startup "~/.local/bin/startaudio.sh"
 spawn-at-startup "dms" "run"
+spawn-at-startup "dcal" "daemon"
 
 hotkey-overlay {
     skip-at-startup
@@ -128,3 +129,5 @@ layer-rule {
     place-within-backdrop true
 }
 
+include "dms/outputs.kdl"
+include "dms/cursor.kdl"

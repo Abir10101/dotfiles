@@ -5,35 +5,35 @@
 [colors-dark]
 
 # Base Colors
-background=1a110f
-foreground=d8c2bc
+background=14140c
+foreground=cac7b6
 
 # Cursor colors (background foreground)
-cursor=3a0b01 ffb5a0
+cursor=1d1d00 cdca75
 
 # Selection colors
-selection-foreground=ffdbd1
-selection-background=5d4037
+selection-foreground=e7e4bf
+selection-background=49482c
 
 # Regular colors (0-7)
-regular0=322825    # black (Surface Container High)
+regular0=2b2a22    # black (Surface Container High)
 regular1=93000a                     # red (Error)
-regular2=e7bdb2                 # green (Secondary - muted slate)
-regular3=524619        # yellow (Tertiary Container - muted gold)
-regular4=ffb5a0                   # blue (Primary)
-regular5=d8c58d                  # magenta (Tertiary - muted iris)
-regular6=723523         # cyan (Primary Container - muted blue)
-regular7=d8c2bc        # white (On Surface Variant)
+regular2=cbc8a4                 # green (Secondary - muted slate)
+regular3=264e3f        # yellow (Tertiary Container - muted gold)
+regular4=cdca75                   # blue (Primary)
+regular5=a5d0bc                  # magenta (Tertiary - muted iris)
+regular6=4b4900         # cyan (Primary Container - muted blue)
+regular7=cac7b6        # white (On Surface Variant)
 
 # Bright colors (8-15)
-bright0=a08c87                    # bright black (Outline)
+bright0=939181                    # bright black (Outline)
 bright1=ffdad6            # bright red (Error Container)
-bright2=e7bdb2        # bright green (Secondary Fixed Dim)
-bright3=d8c58d         # bright yellow (Tertiary Fixed Dim)
-bright4=ffb5a0          # bright blue (Primary Fixed Dim)
-bright5=f5e1a7      # bright magenta (On Tertiary Container)
-bright6=ffdbd1       # bright cyan (On Primary Container)
-bright7=f1dfda                 # bright white (On Surface)
+bright2=cbc8a4        # bright green (Secondary Fixed Dim)
+bright3=a5d0bc         # bright yellow (Tertiary Fixed Dim)
+bright4=cdca75          # bright blue (Primary Fixed Dim)
+bright5=c0ecd7      # bright magenta (On Tertiary Container)
+bright6=eae68e       # bright cyan (On Primary Container)
+bright7=e6e2d5                 # bright white (On Surface)
 
 # Flash color (for bell/alerts)
-flash=d8c58d
+flash=a5d0bc

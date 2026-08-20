@@ -1,6 +1,6 @@
 alias yz='yazi'
 alias ls='ls -alhF --color=auto'
-alias rm='trash-put'
+alias rm='dms trash put'
 alias open='xdg-open'
 alias fb='fabric'
 alias localsend='GDK_BACKEND=x11 localsend'
